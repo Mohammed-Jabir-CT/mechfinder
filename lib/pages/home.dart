@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
+
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +22,14 @@ class Home extends StatelessWidget {
         ),
         backgroundColor: Colors.grey[850],
         actions: [
+          IconButton(
+            onPressed: (){
+              Navigator.pushNamed(context, "/Notifications");
+            },
+            icon: Icon(
+              Icons.notifications,
+            ),
+          ),
           TextButton(
               onPressed: () {
                 Navigator.pushNamed(context, "/Register");
@@ -29,7 +43,8 @@ class Home extends StatelessWidget {
           ),
         ],
       ),
-      body: Padding(
+      body:
+      Padding(
         padding: const EdgeInsets.symmetric(horizontal: 18.0,vertical: 14.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -55,60 +70,6 @@ class Home extends StatelessWidget {
                   backgroundColor: Colors.amberAccent,
 
                 ),
-              ),
-            ),
-          ],
-        ),
-      ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {  },
-      //   backgroundColor: Color(0xFFE6FF94),
-      //   child: Icon(
-      //     Icons.search,
-      //     color: Colors.black,
-      //   ),
-      // ),
-      bottomNavigationBar: Container(
-        height: 60.0,
-        decoration: BoxDecoration(
-            border: Border(
-                top: BorderSide(
-                  color: Colors.grey,
-                  width: 0.25,
-                ))
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            IconButton(
-              onPressed: (){},
-              icon: Icon(
-                Icons.home,
-                color: Colors.white,
-              ),
-            ),
-            IconButton(
-              onPressed: (){},
-              icon: Icon(
-                Icons.notifications,
-                color: Colors.white,
-              ),
-            ),
-            IconButton(
-              onPressed: (){},
-              icon: Icon(
-                Icons.settings,
-                color: Colors.white,
-              ),
-            ),
-            IconButton(
-              onPressed: (){
-                Navigator.pushNamed(context, '/UserProfile');
-              },
-              enableFeedback: false,
-              icon: Icon(
-                  Icons.person,
-                  color: Colors.white
               ),
             ),
           ],

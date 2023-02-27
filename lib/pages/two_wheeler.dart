@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:va/designs/vehicle_button.dart';
+import 'package:va/pages/mechanics.dart';
 
 
 class TwoWheeler extends StatelessWidget {
@@ -38,7 +39,7 @@ class TwoWheeler extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    VehicleButton(vehicleName: "Bike", vehicleIcon: Icons.two_wheeler, onClick: (){}),
+                    VehicleButton(vehicleName: "Bike", vehicleIcon: Icons.two_wheeler, onClick: (){Navigator.pushNamed(context, '/Mechanics');}),
                     VehicleButton(vehicleName: "Scooter", vehicleIcon: Icons.moped, onClick: (){}),
                   ],
                 ),

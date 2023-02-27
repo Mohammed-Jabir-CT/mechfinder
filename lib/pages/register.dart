@@ -17,7 +17,9 @@ class Register extends StatelessWidget {
                 width: 200.0,
                 height: 50.0,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, "/SignupTest");
+                  },
                   child: Text(
                     "Register As A Mechanic",
                     style: TextStyle(

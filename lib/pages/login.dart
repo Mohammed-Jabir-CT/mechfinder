@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class Login extends StatelessWidget {
   const Login({Key? key}) : super(key: key);
@@ -16,7 +17,8 @@ class Login extends StatelessWidget {
                 "Login",
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 50.0,
+                  fontSize: 24.0,
+                  fontFamily: "Poppins",
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -30,10 +32,12 @@ class Login extends StatelessWidget {
                       controller: TextEditingController(),
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
-                        labelText: "User Name",
-                        labelStyle: TextStyle(
-                          color: Colors.white,
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.amberAccent,
+                          )
                         ),
+                        hintText: "User Name",
                       ),
                     ),
                     SizedBox(
@@ -44,21 +48,36 @@ class Login extends StatelessWidget {
                       obscureText: true,
                       decoration: InputDecoration(
                           border: OutlineInputBorder(),
-                          labelText: "Password",
-                          labelStyle: TextStyle(
-                            color: Colors.white,
-                          )
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.amberAccent,
+                            )
+                          ),
+                          hintText: "Password",
                       ),
                     ),
                     TextButton(
                       onPressed: () {},
-                      child: Text("Forgot Password"),
+                      child: Text(
+                        "Forgot Password",
+                        style: TextStyle(
+                          color: Colors.amberAccent,
+                        ),
+
+                      ),
                     ),
-                    ElevatedButton(
-                      onPressed: (){},
-                      child: Text("Login"),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xFFFFFF),
+                    SizedBox(
+                      height: 50,
+                      child: ElevatedButton(
+                        onPressed: (){},
+                        child: Text(
+                          "Login",
+                          style: TextStyle(
+                            fontWeight:FontWeight.bold,
+                            fontFamily: "Poppins",
+                            fontSize: 18.0
+                          ),
+                        ),
                       ),
                     ),
                     Row(
@@ -77,6 +96,7 @@ class Login extends StatelessWidget {
                           child: Text(
                             "Sign up",
                             style: TextStyle(
+                              color: Colors.amberAccent,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -93,5 +113,6 @@ class Login extends StatelessWidget {
       ),
     );
   }
+
 }
 

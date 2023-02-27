@@ -9,10 +9,20 @@ class UserProfile extends StatelessWidget {
       body: SafeArea(
         child: Container(
           width: double.infinity,
-          padding: EdgeInsets.fromLTRB(18, 100, 18, 0),
+          padding: EdgeInsets.fromLTRB(18, 18, 18, 0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              Text(
+                "Profile",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24.0,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: "Poppins",
+                ),
+              ),
+              SizedBox(height: 50,),
               CircleAvatar(
                 radius: 35.0,
                 child: Icon(
@@ -23,13 +33,17 @@ class UserProfile extends StatelessWidget {
               ),
               SizedBox(height: 30.0,),
               Text(
-                "Full Name",
+                "Koottakkaran",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 20.0,
                 ),
               ),
+              SizedBox(height: 8,),
+              Text(
+                "Vengara, Malappuram",
 
+              ),
             ],
           ),
         ),
