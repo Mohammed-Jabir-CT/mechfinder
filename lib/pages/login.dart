@@ -1,203 +1,114 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:get/get.dart';
-import 'package:va/pages/Forgotpassword.dart';
-import 'package:va/pages/home.dart';
 
 class Login extends StatelessWidget {
-  Login({Key? key}) : super(key: key);
-  final email = TextEditingController();
-  final password = TextEditingController();
-  final formkey = GlobalKey<FormState>();
-  void signin() async{
-    try{
-      if(formkey.currentState!.validate()){
-        await FirebaseAuth.instance.signInWithEmailAndPassword(email: email.text, password: password.text);
-      }
-    }
-    on FirebaseAuthException catch(e){
-       switch (e.code) {
-        case "invalid-email":
-           Get.showSnackbar(
-            const  GetSnackBar(
-              margin: EdgeInsets.all(15),
-              borderRadius: 8,
-              message:
-                  ('Your username or password is incorrect. Please try again.'),
-              duration: Duration(seconds: 3),
-              backgroundColor: Colors.red,
-            ),
-          );
-           break; 
-
-        case "wrong-password":
-           Get.showSnackbar(
-            const GetSnackBar(
-              margin: EdgeInsets.all(15),
-              borderRadius: 8,
-              message: ('The password is invalid for the given email'),
-              duration: Duration(seconds: 3),
-              backgroundColor: Colors.red,
-               
-            ),
-            
-          );
-           break;
- 
-        case "user-not-found":
-        
-           Get.showSnackbar(
-            const GetSnackBar(
-              margin: EdgeInsets.all(15),
-              borderRadius: 8,
-              message: ('There is no user corresponding to the given email.'),
-              duration: Duration(seconds: 3),
-              backgroundColor: Colors.red,
-            ),
-          );
-      }
-    }
-    
-
-  }
+  const Login({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[900],
-      body: StreamBuilder<User?>(
-          stream: FirebaseAuth.instance.authStateChanges(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            } else if (snapshot.hasData) {
-               return const Home();
-            } else {
-              return Form(
-                key: formkey,
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(10.0, 40.0, 10.0, 0),
-                  child: Center(
-                    child: Column(
-                      children: [
-                        const Text(
+      resizeToAvoidBottomInset: false,
+      body: Padding(
+        padding: const EdgeInsets.fromLTRB(10.0, 40.0, 10.0, 0),
+        child: Center(
+          child: Column(
+            children: [
+              Text(
+                "Login",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24.0,
+                  fontFamily: "Poppins",
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(
+                height: 130.0,
+              ),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 10.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    TextField(
+                      controller: TextEditingController(),
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                          color: Colors.amberAccent,
+                        )),
+                        hintText: "User Name",
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20.0,
+                    ),
+                    TextField(
+                      controller: TextEditingController(),
+                      obscureText: true,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                          color: Colors.amberAccent,
+                        )),
+                        hintText: "Password",
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        "Forgot Password",
+                        style: TextStyle(
+                          color: Colors.amberAccent,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 50,
+                      child: ElevatedButton(
+                        onPressed: () {},
+                        child: Text(
                           "Login",
                           style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontFamily: "Poppins",
+                              fontSize: 18.0),
+                        ),
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Does not have an account?",
+                          style: TextStyle(
                             color: Colors.white,
-                            fontSize: 24.0,
-                            fontFamily: "Poppins",
-                            fontWeight: FontWeight.bold,
                           ),
                         ),
-                        const SizedBox(
-                          height: 130.0,
-                        ),
-                        Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: [
-                              TextFormField(
-                                validator: (value) {
-                                  if (value!.isEmpty || !value.contains('@')) {
-                                    return 'Please enter a valid email address';
-                                  }
-                                  return null;
-                                },
-                                controller: email,
-                                decoration: const InputDecoration(
-                                  border: OutlineInputBorder(),
-                                  focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                    color: Colors.amberAccent,
-                                  )),
-                                  hintText: "User Name",
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 20.0,
-                              ),
-                              TextFormField(
-                                validator: ((value) {
-                                  if (value!.isEmpty) {
-                                    return 'Please Enter Password';
-                                  }
-                                   else {
-                                    return null;
-                                  }
-                                }),
-                                controller: password,
-                                obscureText: true,
-                                decoration: const InputDecoration(
-                                  border: OutlineInputBorder(),
-                                  focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                    color: Colors.amberAccent,
-                                  )),
-                                  hintText: "Password",
-                                ),
-                              ),
-                              TextButton(
-                                onPressed: () {
-                                  Get.to(() => const ForgotPassword());
-                                },
-                                child: const Text(
-                                  "Forgot Password",
-                                  style: TextStyle(
-                                    color: Colors.amberAccent,
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: 50,
-                                child: ElevatedButton(
-                                  onPressed: () {
-                                    signin();
-                                  },
-                                  child: const Text(
-                                    "Login",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontFamily: "Poppins",
-                                        fontSize: 18.0),
-                                  ),
-                                ),
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  const Text(
-                                    "Does not have an account?",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  TextButton(
-                                    onPressed: () {
-                                      Navigator.pushNamed(context, "/SignUp");
-                                    },
-                                    child: const Text(
-                                      "Sign up",
-                                      style: TextStyle(
-                                        color: Colors.amberAccent,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, "/SignUp");
+                          },
+                          child: Text(
+                            "Sign up",
+                            style: TextStyle(
+                              color: Colors.amberAccent,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ],
                     ),
-                  ),
+                  ],
                 ),
-              );
-            }
-          }),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

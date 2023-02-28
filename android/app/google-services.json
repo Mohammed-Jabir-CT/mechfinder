@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "883412639240",
+    "project_id": "mechanic-finder-f9853",
+    "storage_bucket": "mechanic-finder-f9853.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:883412639240:android:991acd22cb0767c682bbbd",
+        "android_client_info": {
+          "package_name": "com.example.va"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "883412639240-d5ll96oo1mdjcgp810t2onolqc67g9ak.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCK7OJMFfovknRiY-hiypHatERv0XRLAnE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "883412639240-d5ll96oo1mdjcgp810t2onolqc67g9ak.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
