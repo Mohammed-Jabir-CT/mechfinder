@@ -40,7 +40,7 @@ void main() async{
       '/ThreeWheeler': (context)=> const ThreeWheeler(),
       '/FourWheeler': (context)=> const FourWheeler(),
       '/Heavy': (context)=> const Heavy(),
-      '/Login': (context)=>const Login(),
+      '/Login': (context)=> Login(),
       '/SignUp':  (context)=> const SignUp(),
       '/Register': (context)=>const Register(),
       '/UserProfile': (context)=>const UserProfile(),

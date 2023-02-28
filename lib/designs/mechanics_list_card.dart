@@ -14,7 +14,7 @@ class _MechanicsListCardState extends State<MechanicsListCard> {
       Container(
         decoration: BoxDecoration(
           color: Colors.grey[800],
-          border: Border(
+          border: const Border(
             right: BorderSide.none,
             left: BorderSide.none,
             bottom: BorderSide.none,
@@ -23,45 +23,45 @@ class _MechanicsListCardState extends State<MechanicsListCard> {
             ),
           ),
         ),
-        padding: EdgeInsets.symmetric(vertical: 16),
-        margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
+        padding: const EdgeInsets.symmetric(vertical: 16),
+        margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
         width: double.infinity,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            SizedBox(width: 10,),
-            CircleAvatar(
+            const SizedBox(width: 10,),
+            const CircleAvatar(
               backgroundColor: Colors.grey,
-              child: Icon(Icons.person),
               radius: 25,
+              child: Icon(Icons.person),
             ),
-            SizedBox(width: 20,),
+            const SizedBox(width: 20,),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Text(
+              children: const[
+                 Text(
                   "Kootakkaran",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 16,
                   ),
                 ),
-                Text("Vengara, 3km away"),
+                 Text("Vengara, 3km away"),
               ],
             ),
-            SizedBox(width: 140,),
+            const SizedBox(width: 140,),
             Column(
                 children: [
                   Row(
-                    children: [
-                      Text(
+                    children: const [
+                       Text(
                         "4.7",
                         style: TextStyle(
                             color: Colors.amberAccent
                         ),
                       ),
-                      Icon(
+                       Icon(
                         Icons.star,
                         color: Colors.amberAccent,
                         size: 16,

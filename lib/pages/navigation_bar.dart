@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:va/pages/settings.dart';
 import 'package:va/pages/user_profile.dart';
-
 import 'home.dart';
-import 'notifications.dart';
+
 
 class MyNavigationBar extends StatefulWidget {
   const MyNavigationBar({Key? key}) : super(key: key);
@@ -16,8 +14,8 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
 
   int _index = 0;
   final screens = [
-    Home(),
-    UserProfile(),
+    const Home(),
+    const UserProfile(),
   ];
 
   @override
@@ -36,7 +34,7 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
         type: BottomNavigationBarType.fixed,
         showSelectedLabels: false,
         showUnselectedLabels: false,
-        items: [
+        items: const[
           BottomNavigationBarItem(
             icon: Icon(
               Icons.home,

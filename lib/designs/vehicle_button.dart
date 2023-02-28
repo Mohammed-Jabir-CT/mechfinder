@@ -35,7 +35,7 @@ class VehicleButton extends StatelessWidget {
               ),
               Text(
                 vehicleName,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.black,
                   fontSize: 20.0,
                   fontWeight: FontWeight.bold,

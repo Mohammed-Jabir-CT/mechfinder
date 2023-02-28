@@ -14,7 +14,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
       backgroundColor: Colors.grey[900],
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "Mechinder",
           style: TextStyle(
             fontFamily: "Poppins",
@@ -26,7 +26,7 @@ class _HomeState extends State<Home> {
             onPressed: (){
               Navigator.pushNamed(context, "/Notifications");
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.notifications,
             ),
           ),
@@ -34,7 +34,7 @@ class _HomeState extends State<Home> {
               onPressed: () {
                 Navigator.pushNamed(context, "/Register");
               },
-              child: Text(
+              child: const Text(
                 "JOIN",
                 style: TextStyle(
                   color: Colors.white,
@@ -57,7 +57,11 @@ class _HomeState extends State<Home> {
                 onPressed: (){
                   Navigator.pushNamed(context, '/VehicleSelect');
                 },
-                child: Text(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.amberAccent,
+
+                ),
+                child: const Text(
                   "Find",
                   style: TextStyle(
                     color: Color(0xFF3A3A3A),
@@ -65,10 +69,6 @@ class _HomeState extends State<Home> {
                     fontWeight: FontWeight.bold,
                     fontSize: 18.0,
                   ),
-                ),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.amberAccent,
-
                 ),
               ),
             ),
