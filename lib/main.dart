@@ -17,7 +17,9 @@ import 'package:va/pages/mechanics.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    //options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
     theme: ThemeData.dark().copyWith(
@@ -39,7 +41,7 @@ void main() async{
       '/FourWheeler': (context)=> const FourWheeler(),
       '/Heavy': (context)=> const Heavy(),
       '/Login': (context)=>const Login(),
-      '/SignUp':  (context)=> SignUp(),
+      '/SignUp':  (context)=> const SignUp(),
       '/Register': (context)=>const Register(),
       '/UserProfile': (context)=>const UserProfile(),
       '/Mechanics': (context)=>const Mechanics(),
