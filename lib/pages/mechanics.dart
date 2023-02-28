@@ -15,17 +15,17 @@ class _MechanicsState extends State<Mechanics> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Container(
+        child: SizedBox(
           width: double.infinity,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Container(
-                padding: EdgeInsets.symmetric(vertical: 8,horizontal: 12),
+                padding: const EdgeInsets.symmetric(vertical: 8,horizontal: 12),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
+                    const Text(
                       "Find Mechanics",
                       style: TextStyle(
                         color: Colors.white,
@@ -35,11 +35,11 @@ class _MechanicsState extends State<Mechanics> {
                     ),
                     ElevatedButton.icon(
                       onPressed: () {},
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.filter_alt,
                         color: Colors.black,
                       ),
-                      label: Text(
+                      label: const Text(
                         "Filter",
                         style: TextStyle(
                           color: Colors.black
@@ -52,12 +52,12 @@ class _MechanicsState extends State<Mechanics> {
                   ],
                 ),
               ),
-              MechanicsListCard(),
-              MechanicsListCard(),
-              MechanicsListCard(),
-              MechanicsListCard(),
-              MechanicsListCard(),
-              MechanicsListCard(),
+              const MechanicsListCard(),
+              const MechanicsListCard(),
+              const MechanicsListCard(),
+              const MechanicsListCard(),
+              const MechanicsListCard(),
+              const MechanicsListCard(),
             ],
           ),
         ),

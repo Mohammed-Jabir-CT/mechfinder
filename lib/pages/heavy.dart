@@ -9,7 +9,7 @@ class Heavy extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.grey[900],
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "Mechinder",
           style: TextStyle(
             fontFamily: "Poppins",
@@ -24,7 +24,7 @@ class Heavy extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
+              const Text(
                 "Heavy:",
                 style: TextStyle(color: Colors.white, fontSize: 30.0),
               ),

@@ -9,7 +9,7 @@ class FourWheeler extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.grey[900],
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "Mechinder",
           style: TextStyle(
             fontFamily: "Poppins",
@@ -25,7 +25,7 @@ class FourWheeler extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children:[
-              Text(
+              const Text(
                 "Four Wheeler:",
                 style: TextStyle(
                     color: Colors.white,

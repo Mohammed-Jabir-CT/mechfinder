@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+import 'package:va/pages/Forgotpassword.dart';
+import 'package:va/pages/home.dart';
 
 class Login extends StatelessWidget {
   Login({Key? key}) : super(key: key);
@@ -71,7 +73,7 @@ class Login extends StatelessWidget {
                 child: CircularProgressIndicator(),
               );
             } else if (snapshot.hasData) {
-              return Container(); // the user has logged in , navigate to homepage.
+               return const Home();
             } else {
               return Form(
                 key: formkey,
@@ -139,7 +141,7 @@ class Login extends StatelessWidget {
                               ),
                               TextButton(
                                 onPressed: () {
-                                  Get.to(() const forgetpassword());
+                                  Get.to(() => const ForgotPassword());
                                 },
                                 child: const Text(
                                   "Forgot Password",

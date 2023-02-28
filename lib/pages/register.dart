@@ -20,19 +20,19 @@ class Register extends StatelessWidget {
                   onPressed: () {
                     Navigator.pushNamed(context, "/SignupTest");
                   },
-                  child: Text(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.amberAccent,
+                  ),
+                  child: const Text(
                     "Register As A Mechanic",
                     style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.amberAccent,
-                  ),
                 ),
               ),
-              SizedBox(height: 20.0),
+              const SizedBox(height: 20.0),
               SizedBox(
                 height: 50.0,
                 width: 200.0,
@@ -40,15 +40,15 @@ class Register extends StatelessWidget {
                   onPressed: () {
                     Navigator.pushNamed(context, "/Login");
                   },
-                  child: Text(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.amberAccent,
+                  ),
+                  child: const Text(
                     "Register As A User",
                     style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
                     ),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.amberAccent,
                   ),
                 ),
               ),
