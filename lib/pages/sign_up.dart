@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-
+import 'package:va/pages/login.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -17,37 +17,30 @@ class _SignUpState extends State<SignUp> {
   final password = TextEditingController();
 
   void createuser() async {
-    try{
-     
+    try {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: email.text, password: password.text);
- 
+          email: email.text, password: password.text);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == "email-already-in-use") {
+        Get.showSnackbar(const GetSnackBar(
+          margin: EdgeInsets.all(15),
+          borderRadius: 8,
+          message:
+              ('There already exists an account with the given email address.'),
+          duration: Duration(seconds: 3),
+          backgroundColor: Colors.red,
+        ));
+      }
     }
-    on FirebaseAuthException catch(e){
-           if(e.code == "email-already-in-use"){
-    
-       Get.showSnackbar(const GetSnackBar(
-        margin: EdgeInsets.all(15),
-        borderRadius: 8,
-        message:
-            ('There already exists an account with the given email address.'),
-        duration: Duration(seconds: 3),
-        backgroundColor: Colors.red,
-      ));
-     }
-    }
-    
-    
   }
 
   void registeruser() async {
-    if(formkey.currentState!.validate()){
+    if (formkey.currentState!.validate()) {
       await FirebaseFirestore.instance.collection('User').doc(email.text).set({
-      'Email': email,
-      "password": password,
-    });
+        'Email': email,
+        "password": password,
+      });
     }
-    
   }
 
   @override
@@ -80,64 +73,54 @@ class _SignUpState extends State<SignUp> {
                       children: [
                         TextFormField(
                           validator: (value) {
-                        if (value!.isEmpty || !value.contains('@')) {
-                          return 'Please enter a valid email address';
-                        }
-                        return null;
-                      },
+                            if (value!.isEmpty || !value.contains('@')) {
+                              return 'Please enter a valid email address';
+                            }
+                            return null;
+                          },
                           controller: email,
                           decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             labelText: "E-Mail",
-                            labelStyle: TextStyle(
-                              color: Colors.white,
-                            ),
                           ),
                         ),
                         const SizedBox(
                           height: 20.0,
                         ),
                         TextFormField(
-                           validator: ((value) {
-                        if(value!.isEmpty){
-                          return 'Please Enter Password';
-                        }
-                        
-                        else if (value.length < 6) {
-                          return 'Password is too short';
-                        }else {
-                          return null;
-                        }
-                      }),
-
+                          validator: ((value) {
+                            if (value!.isEmpty) {
+                              return 'Please Enter Password';
+                            } else if (value.length < 6) {
+                              return 'Password is too short';
+                            } else {
+                              return null;
+                            }
+                          }),
                           controller: password,
                           obscureText: true,
-                          decoration:const  InputDecoration(
-                              border: OutlineInputBorder(),
-                              labelText: "Password",
-                              labelStyle: TextStyle(
-                                color: Colors.white,
-                              )),
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            labelText: "Password",
+                          ),
                         ),
                         const SizedBox(
                           height: 20.0,
                         ),
                         TextFormField(
                           validator: ((value) {
-                        if (value != password.text) {
-                          return 'The password don\'t match ';
-                        } else {
-                          return null;
-                        }
-                      }),
+                            if (value != password.text) {
+                              return 'The password don\'t match ';
+                            } else {
+                              return null;
+                            }
+                          }),
                           controller: TextEditingController(),
                           obscureText: true,
                           decoration: const InputDecoration(
-                              border: OutlineInputBorder(),
-                              labelText: "Confirm Password",
-                              labelStyle: TextStyle(
-                                color: Colors.white,
-                              )),
+                            border: OutlineInputBorder(),
+                            labelText: "Confirm Password",
+                          ),
                         ),
                         const SizedBox(
                           height: 20.0,
@@ -154,18 +137,16 @@ class _SignUpState extends State<SignUp> {
                           children: [
                             const Text(
                               "or",
-                              style: TextStyle(
-                                color: Colors.white,
-                              ),
                             ),
                             TextButton(
                               onPressed: () {
-                                Navigator.pushNamed(context, '/Login');
+                                Get.to(Login());
                               },
                               child: const Text(
                                 "Login",
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
+                                  color: Colors.amberAccent,
                                 ),
                               ),
                             ),

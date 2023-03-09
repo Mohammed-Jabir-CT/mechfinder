@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:va/designs/vehicle_button.dart';
+import 'package:va/pages/mechanics.dart';
 
 class Heavy extends StatelessWidget {
   const Heavy({Key? key}) : super(key: key);
@@ -10,7 +12,7 @@ class Heavy extends StatelessWidget {
       backgroundColor: Colors.grey[900],
       appBar: AppBar(
         title: const Text(
-          "Mechinder",
+          "MechFinder",
           style: TextStyle(
             fontFamily: "Poppins",
           ),
@@ -34,8 +36,18 @@ class Heavy extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    VehicleButton(vehicleName: "Bus", vehicleIcon: Icons.directions_bus_rounded, onClick: (){}),
-                    VehicleButton(vehicleName: "Truck", vehicleIcon: Icons.fire_truck, onClick: (){}),
+                    VehicleButton(
+                        vehicleName: "Bus",
+                        vehicleIcon: Icons.directions_bus_rounded,
+                        onClick: () {
+                          Get.to(const Mechanics());
+                        }),
+                    VehicleButton(
+                        vehicleName: "Truck",
+                        vehicleIcon: Icons.fire_truck,
+                        onClick: () {
+                          Get.to(const Mechanics());
+                        }),
                   ],
                 ),
               ),

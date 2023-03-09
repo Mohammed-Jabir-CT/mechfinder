@@ -8,14 +8,13 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[900],
       appBar: AppBar(
         title: const Text(
-          "Mechinder",
+          "MechFinder",
           style: TextStyle(
             fontFamily: "Poppins",
           ),
@@ -23,7 +22,7 @@ class _HomeState extends State<Home> {
         backgroundColor: Colors.grey[850],
         actions: [
           IconButton(
-            onPressed: (){
+            onPressed: () {
               Navigator.pushNamed(context, "/Notifications");
             },
             icon: const Icon(
@@ -31,21 +30,20 @@ class _HomeState extends State<Home> {
             ),
           ),
           TextButton(
-              onPressed: () {
-                Navigator.pushNamed(context, "/Register");
-              },
-              child: const Text(
-                "JOIN",
-                style: TextStyle(
-                  color: Colors.white,
-                ),
+            onPressed: () {
+              Navigator.pushNamed(context, "/Register");
+            },
+            child: const Text(
+              "JOIN",
+              style: TextStyle(
+                color: Colors.white,
               ),
+            ),
           ),
         ],
       ),
-      body:
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 18.0,vertical: 14.0),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 14.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.end,
@@ -54,21 +52,11 @@ class _HomeState extends State<Home> {
               width: 100.0,
               height: 50.0,
               child: ElevatedButton(
-                onPressed: (){
+                onPressed: () {
                   Navigator.pushNamed(context, '/VehicleSelect');
                 },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.amberAccent,
-
-                ),
                 child: const Text(
                   "Find",
-                  style: TextStyle(
-                    color: Color(0xFF3A3A3A),
-                    fontFamily: "Poppins",
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18.0,
-                  ),
                 ),
               ),
             ),

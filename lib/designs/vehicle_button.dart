@@ -1,12 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:va/colors/colors.dart';
 
-class VehicleButton extends StatelessWidget {
-  String vehicleName;
-  IconData vehicleIcon;
-  VoidCallback onClick;
-  VehicleButton({super.key, required this.vehicleName, required this.vehicleIcon, required this.onClick});
+class VehicleButton extends StatefulWidget {
+  late String vehicleName;
+  late IconData vehicleIcon;
+  late VoidCallback onClick;
+  VehicleButton(
+      {super.key,
+      required this.vehicleName,
+      required this.vehicleIcon,
+      required this.onClick});
 
+  @override
+  State<VehicleButton> createState() => _VehicleButtonState();
+}
+
+class _VehicleButtonState extends State<VehicleButton> {
   get borderRadius => BorderRadius.circular(8.0);
 
   @override
@@ -15,8 +24,8 @@ class VehicleButton extends StatelessWidget {
       elevation: 10,
       borderRadius: borderRadius,
       child: InkWell(
-        onTap: (){
-          onClick();
+        onTap: () {
+          widget.onClick();
         },
         child: Container(
           height: 140.0,
@@ -29,12 +38,12 @@ class VehicleButton extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(
-                vehicleIcon,
+                widget.vehicleIcon,
                 color: Colors.black,
                 size: 50.0,
               ),
               Text(
-                vehicleName,
+                widget.vehicleName,
                 style: const TextStyle(
                   color: Colors.black,
                   fontSize: 20.0,

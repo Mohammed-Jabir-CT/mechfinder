@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:va/pages/login.dart';
+import 'package:va/pages/mechanic_signup.dart';
 
 class Register extends StatelessWidget {
   const Register({Key? key}) : super(key: key);
@@ -14,11 +17,11 @@ class Register extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(
-                width: 200.0,
+                width: 250.0,
                 height: 50.0,
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, "/SignupTest");
+                    Get.to(MechanicSignup());
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.amberAccent,
@@ -35,10 +38,10 @@ class Register extends StatelessWidget {
               const SizedBox(height: 20.0),
               SizedBox(
                 height: 50.0,
-                width: 200.0,
+                width: 250.0,
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, "/Login");
+                    Get.to(Login());
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.amberAccent,

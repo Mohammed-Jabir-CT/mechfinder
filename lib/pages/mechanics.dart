@@ -10,7 +10,6 @@ class Mechanics extends StatefulWidget {
 }
 
 class _MechanicsState extends State<Mechanics> {
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +20,8 @@ class _MechanicsState extends State<Mechanics> {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Container(
-                padding: const EdgeInsets.symmetric(vertical: 8,horizontal: 12),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -41,12 +41,7 @@ class _MechanicsState extends State<Mechanics> {
                       ),
                       label: const Text(
                         "Filter",
-                        style: TextStyle(
-                          color: Colors.black
-                        ),
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.amberAccent,
+                        style: TextStyle(fontWeight: FontWeight.w600),
                       ),
                     ),
                   ],
@@ -61,7 +56,6 @@ class _MechanicsState extends State<Mechanics> {
             ],
           ),
         ),
-
       ),
     );
   }

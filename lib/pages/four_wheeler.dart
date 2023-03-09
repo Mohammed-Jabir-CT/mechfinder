@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:va/designs/vehicle_button.dart';
+import 'package:va/pages/mechanics.dart';
 
 class FourWheeler extends StatelessWidget {
   const FourWheeler({Key? key}) : super(key: key);
@@ -10,44 +12,50 @@ class FourWheeler extends StatelessWidget {
       backgroundColor: Colors.grey[900],
       appBar: AppBar(
         title: const Text(
-          "Mechinder",
+          "MechFinder",
           style: TextStyle(
             fontFamily: "Poppins",
           ),
         ),
         backgroundColor: Colors.grey[850],
       ),
-      body:
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0,vertical: 30.0),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 30.0),
         child: Center(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
-            children:[
+            children: [
               const Text(
                 "Four Wheeler:",
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 30.0
-                ),
+                style: TextStyle(color: Colors.white, fontSize: 30.0),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0,vertical: 30.0),
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 16.0, vertical: 30.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        VehicleButton(vehicleName: "Car", vehicleIcon: Icons.local_taxi, onClick: (){}),
-                        VehicleButton(vehicleName: "Pickup", vehicleIcon: Icons.local_taxi, onClick: (){}),
+                        VehicleButton(
+                            vehicleName: "Car",
+                            vehicleIcon: Icons.local_taxi,
+                            onClick: () {
+                              Get.to(const Mechanics());
+                            }),
+                        VehicleButton(
+                            vehicleName: "Pickup",
+                            vehicleIcon: Icons.local_taxi,
+                            onClick: () {
+                              Get.to(const Mechanics());
+                            }),
                       ],
                     ),
                   ],
                 ),
               ),
-
             ],
           ),
         ),

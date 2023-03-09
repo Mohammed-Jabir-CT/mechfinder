@@ -9,8 +9,8 @@ class VehicleSelect extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.grey[900],
       appBar: AppBar(
-        title: Text(
-          "Mechinder",
+        title: const Text(
+          "MechFinder",
           style: TextStyle(
             fontFamily: "Poppins",
           ),
@@ -24,7 +24,7 @@ class VehicleSelect extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
+              const Text(
                 "Select Vehicle Type:",
                 style: TextStyle(color: Colors.white, fontSize: 30.0),
               ),
@@ -40,34 +40,36 @@ class VehicleSelect extends StatelessWidget {
                         VehicleButton(
                           vehicleName: "Two Wheeler",
                           vehicleIcon: Icons.two_wheeler,
-                          onClick: (){
+                          onClick: () {
                             Navigator.pushNamed(context, '/TwoWheeler');
                           },
                         ),
                         VehicleButton(
                           vehicleName: "Three Wheeler",
                           vehicleIcon: Icons.electric_rickshaw,
-                          onClick: (){
+                          onClick: () {
                             Navigator.pushNamed(context, '/ThreeWheeler');
                           },
                         ),
                       ],
                     ),
-                    SizedBox(height: 30.0,),
+                    const SizedBox(
+                      height: 30.0,
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         VehicleButton(
                           vehicleName: "Four Wheeler",
                           vehicleIcon: Icons.local_taxi,
-                          onClick: (){
+                          onClick: () {
                             Navigator.pushNamed(context, '/FourWheeler');
                           },
                         ),
                         VehicleButton(
                           vehicleName: "Heavy",
                           vehicleIcon: Icons.directions_bus_rounded,
-                          onClick: (){
+                          onClick: () {
                             Navigator.pushNamed(context, '/Heavy');
                           },
                         ),
@@ -80,6 +82,6 @@ class VehicleSelect extends StatelessWidget {
           ),
         ),
       ),
-    );;
+    );
   }
 }

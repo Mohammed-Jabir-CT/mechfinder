@@ -9,11 +9,11 @@ class UserProfile extends StatelessWidget {
       body: SafeArea(
         child: Container(
           width: double.infinity,
-          padding: EdgeInsets.fromLTRB(18, 18, 18, 0),
+          padding: const EdgeInsets.fromLTRB(18, 18, 18, 0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
+              const Text(
                 "Profile",
                 style: TextStyle(
                   color: Colors.white,
@@ -22,27 +22,32 @@ class UserProfile extends StatelessWidget {
                   fontFamily: "Poppins",
                 ),
               ),
-              SizedBox(height: 50,),
+              const SizedBox(
+                height: 50,
+              ),
               CircleAvatar(
                 radius: 35.0,
+                backgroundColor: Colors.grey[400],
                 child: Icon(
                   Icons.person,
                   color: Colors.grey[200],
                 ),
-                backgroundColor: Colors.grey[400],
               ),
-              SizedBox(height: 30.0,),
-              Text(
+              const SizedBox(
+                height: 30.0,
+              ),
+              const Text(
                 "Koottakkaran",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 20.0,
                 ),
               ),
-              SizedBox(height: 8,),
-              Text(
+              const SizedBox(
+                height: 8,
+              ),
+              const Text(
                 "Vengara, Malappuram",
-
               ),
             ],
           ),
