@@ -36,7 +36,7 @@ class Register extends StatelessWidget {
                         height: 50.0,
                         child: ElevatedButton(
                           onPressed: () {
-                            Get.to(() => const MechanicSignup());
+                            Get.to(() => MechanicSignup());
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.amberAccent,

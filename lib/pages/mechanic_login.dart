@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:va/controllers/mechanic_login_controller.dart';
 import 'package:va/pages/mechanic_signup.dart';
 
-class MechanicLogin extends StatefulWidget {
-  const MechanicLogin({super.key});
+class MechanicLogin extends StatelessWidget {
+  MechanicLogin({super.key});
 
-  @override
-  State<MechanicLogin> createState() => _MechanicLoginState();
-}
+  final controller = Get.put(MechanicLoginController());
 
-class _MechanicLoginState extends State<MechanicLogin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,6 +33,7 @@ class _MechanicLoginState extends State<MechanicLogin> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     TextFormField(
+                      controller: controller.emailController,
                       validator: (value) {
                         if (value!.isEmpty || !value.contains('@')) {
                           return 'Please enter a valid email address';
@@ -49,6 +48,7 @@ class _MechanicLoginState extends State<MechanicLogin> {
                       height: 20.0,
                     ),
                     TextFormField(
+                      controller: controller.passwordController,
                       validator: ((value) {
                         if (value!.isEmpty) {
                           return 'Please Enter Password';
@@ -73,7 +73,9 @@ class _MechanicLoginState extends State<MechanicLogin> {
                     SizedBox(
                       height: 50,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          controller.login();
+                        },
                         child: const Text(
                           "Login",
                           style: TextStyle(

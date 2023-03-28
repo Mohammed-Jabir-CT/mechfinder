@@ -18,8 +18,6 @@ class MechanicsController extends GetxController {
     List data = mechanicsSnapshot.docs.map((e) => e.data()).toList();
 
     mechanics.value = data;
-    print("ff");
-    print(data);
 
     osm.GeoPoint userLocation = await homeController.mapController.myLocation();
 

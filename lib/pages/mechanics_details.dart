@@ -6,7 +6,6 @@ import 'package:va/controllers/mechanics_details_controller.dart';
 class MechanicsDetails extends StatefulWidget {
   final controller = Get.put(MechanicsDetailsController());
 
-
   late String name;
   late String place;
   late String photo;
@@ -15,21 +14,29 @@ class MechanicsDetails extends StatefulWidget {
   late String bio;
   late String mechanicype;
   late String email;
-  MechanicsDetails({super.key, required this.photo, required this.name, required this.place, required this.city, required this.phoneNumber, required this.bio, required this.mechanicype, required this.email});
+
+  MechanicsDetails(
+      {super.key,
+      required this.photo,
+      required this.name,
+      required this.place,
+      required this.city,
+      required this.phoneNumber,
+      required this.bio,
+      required this.mechanicype,
+      required this.email});
 
   @override
   State<MechanicsDetails> createState() => _MechanicsDetailsState();
 }
 
 class _MechanicsDetailsState extends State<MechanicsDetails> {
-
   Future<void>? _launched;
 
   Future<void> _makePhoneCall(String phoneNumber) async {
     final Uri launchUri = Uri(
       scheme: 'tel',
       path: phoneNumber,
-
     );
     await launchUrl(launchUri);
   }
@@ -54,7 +61,9 @@ class _MechanicsDetailsState extends State<MechanicsDetails> {
                   ),
                 ],
               ),
-              SizedBox(height: 18,),
+              SizedBox(
+                height: 18,
+              ),
               Expanded(
                 child: Container(
                   decoration: BoxDecoration(
@@ -130,7 +139,8 @@ class _MechanicsDetailsState extends State<MechanicsDetails> {
                               widget.bio,
                               style: TextStyle(
                                 fontSize: 16,
-                              ),),
+                              ),
+                            ),
                           ),
                         ],
                       ),
@@ -138,7 +148,9 @@ class _MechanicsDetailsState extends State<MechanicsDetails> {
                   ),
                 ),
               ),
-              SizedBox(height: 18,),
+              SizedBox(
+                height: 18,
+              ),
               Container(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,

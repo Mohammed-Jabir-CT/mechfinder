@@ -5,12 +5,12 @@ import 'package:va/pages/mechanic_login.dart';
 import '../controllers/mechanic_signup_controller.dart';
 
 class MechanicSignup extends StatelessWidget {
-  const MechanicSignup({Key? key}) : super(key: key);
+  MechanicSignup({Key? key}) : super(key: key);
+
+  final controller = Get.put(MechanicSignupController());
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(MechanicSignupController());
-
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -234,7 +234,7 @@ class MechanicSignup extends StatelessWidget {
                           ),
                           TextButton(
                             onPressed: () {
-                              Get.to(const MechanicLogin());
+                              Get.to(MechanicLogin());
                             },
                             child: const Text(
                               "Login",
