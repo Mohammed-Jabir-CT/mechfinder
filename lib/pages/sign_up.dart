@@ -46,7 +46,6 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[900],
       body: SingleChildScrollView(
         child: Form(
           key: formkey,
@@ -80,8 +79,7 @@ class _SignUpState extends State<SignUp> {
                           },
                           controller: email,
                           decoration: const InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: "E-Mail",
+                            hintText: "E-Mail",
                           ),
                         ),
                         const SizedBox(
@@ -100,8 +98,7 @@ class _SignUpState extends State<SignUp> {
                           controller: password,
                           obscureText: true,
                           decoration: const InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: "Password",
+                            hintText: "Password",
                           ),
                         ),
                         const SizedBox(
@@ -118,19 +115,21 @@ class _SignUpState extends State<SignUp> {
                           controller: TextEditingController(),
                           obscureText: true,
                           decoration: const InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: "Confirm Password",
+                            hintText: "Confirm Password",
                           ),
                         ),
                         const SizedBox(
                           height: 20.0,
                         ),
-                        ElevatedButton(
-                          onPressed: () {
-                            createuser();
-                            registeruser();
-                          },
-                          child: const Text("Sign Up"),
+                        SizedBox(
+                          height: 50,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              createuser();
+                              registeruser();
+                            },
+                            child: const Text("Sign Up"),
+                          ),
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,

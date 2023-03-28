@@ -3,7 +3,15 @@ import 'package:get/get.dart';
 import 'package:va/pages/mechanics_details.dart';
 
 class MechanicsListCard extends StatefulWidget {
-  const MechanicsListCard({Key? key}) : super(key: key);
+  late String name;
+  late String place;
+  late String photo;
+  late String phoneNumber;
+  late String email;
+  late String city;
+  late String bio;
+  late String mechanicype;
+  MechanicsListCard({super.key, required this.photo, required this.name, required this.place, required this.city, required this.phoneNumber, required this.bio, required this.mechanicype, required this.email});
 
   @override
   State<MechanicsListCard> createState() => _MechanicsListCardState();
@@ -14,17 +22,21 @@ class _MechanicsListCardState extends State<MechanicsListCard> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.to(const MechanicsDetails());
+        Get.to(()=> MechanicsDetails(photo: widget.photo, name: widget.name, place: widget.place, city: widget.city, phoneNumber: widget.phoneNumber, bio: widget.bio, mechanicype: widget.mechanicype, email: widget.email,));
       },
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.grey[800],
+          color: Colors.grey[900],
           border: const Border(
             right: BorderSide.none,
             left: BorderSide.none,
-            bottom: BorderSide.none,
+            bottom: BorderSide(
+              color: Colors.grey,
+              width: 0.5,
+            ),
             top: BorderSide(
-              color: Colors.black,
+              color: Colors.grey,
+              width: 0.5,
             ),
           ),
         ),
@@ -34,51 +46,45 @@ class _MechanicsListCardState extends State<MechanicsListCard> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            const SizedBox(
-              width: 10,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              child: CircleAvatar(
+                backgroundColor: Colors.grey,
+                radius: 25,
+                backgroundImage: NetworkImage(widget.photo),
+              ),
             ),
-            const CircleAvatar(
-              backgroundColor: Colors.grey,
-              radius: 25,
-              child: Icon(Icons.person),
-            ),
-            const SizedBox(
-              width: 20,
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: const [
-                Text(
-                  "Kootakkaran",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 1,
-                    fontSize: 16,
+            Expanded(
+              child: Row(
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Text(
+                        widget.name,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 1,
+                          fontSize: 16,
+                        ),
+                      ),
+                      Text("${widget.place}, ${widget.city}"),
+                    ],
                   ),
-                ),
-                Text("Vengara, 3km away"),
-              ],
+                ],
+              ),
             ),
-            const SizedBox(
-              width: 140,
-            ),
-            Column(
-              children: [
-                Row(
-                  children: const [
-                    Text(
-                      "4.7",
-                      style: TextStyle(color: Colors.amberAccent),
-                    ),
-                    Icon(
-                      Icons.star,
-                      color: Colors.amberAccent,
-                      size: 16,
-                    ),
-                  ],
-                )
-              ],
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 14),
+              child: Row(
+                children: const [
+                  Text(
+                    "3km",
+                    style: TextStyle(color: Colors.amberAccent),
+                  ),
+                ],
+              ),
             ),
           ],
         ),

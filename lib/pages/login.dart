@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:va/pages/Forgotpassword.dart';
 import 'package:va/pages/home.dart';
+import 'package:va/pages/sign_up.dart';
 
 class Login extends StatelessWidget {
   Login({Key? key}) : super(key: key);
@@ -59,7 +60,6 @@ class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[900],
       resizeToAvoidBottomInset: false,
       body: StreamBuilder<User?>(
           stream: FirebaseAuth.instance.authStateChanges(),
@@ -69,7 +69,8 @@ class Login extends StatelessWidget {
                 child: CircularProgressIndicator(),
               );
             } else if (snapshot.hasData) {
-              return const Home(); // the user has logged in , navigate to homepage.
+              return Home();
+               // the user has logged in , navigate to homepage.
             } else {
               return Form(
                 key: formkey,
@@ -87,14 +88,13 @@ class Login extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(
-                          height: 130.0,
+                          height: 176.0,
                         ),
                         Container(
                           padding: const EdgeInsets.symmetric(horizontal: 10.0),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
-                              const SizedBox(height: 46),
                               TextFormField(
                                 validator: (value) {
                                   if (value!.isEmpty || !value.contains('@')) {
@@ -104,11 +104,6 @@ class Login extends StatelessWidget {
                                 },
                                 controller: email,
                                 decoration: const InputDecoration(
-                                  border: OutlineInputBorder(),
-                                  focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                    color: Colors.amberAccent,
-                                  )),
                                   hintText: "E-mail",
                                 ),
                               ),
@@ -126,11 +121,6 @@ class Login extends StatelessWidget {
                                 controller: password,
                                 obscureText: true,
                                 decoration: const InputDecoration(
-                                  border: OutlineInputBorder(),
-                                  focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                    color: Colors.amberAccent,
-                                  )),
                                   hintText: "Password",
                                 ),
                               ),
@@ -171,7 +161,7 @@ class Login extends StatelessWidget {
                                   ),
                                   TextButton(
                                     onPressed: () {
-                                      Navigator.pushNamed(context, "/SignUp");
+                                      Get.to(()=> const SignUp());
                                     },
                                     child: const Text(
                                       "Sign up",

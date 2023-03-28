@@ -22,8 +22,13 @@ class _ForgotPasswordState extends State<ForgotPassword> {
         child: Scaffold(
          
       appBar: AppBar(
-        title: const Text('Reset Password'),
-       
+        title: const Text(
+          'Reset Password',
+          style: TextStyle(
+            fontFamily: "Poppins"
+          ),
+        ),
+        backgroundColor: Colors.grey[850],
       ),
       body: Form(
         key: _formKey,
@@ -33,20 +38,27 @@ class _ForgotPasswordState extends State<ForgotPassword> {
             children: [
               Container(
                 padding: const EdgeInsets.all(10),
-                child: TextFormField(
-                  validator: (value) {
-                    if (value!.isEmpty || !value.contains('@')) {
-                      return 'Please enter a valid email address';
-                    }
-                    return null;
-                  },
-                  controller: emailController,
-                  decoration: const InputDecoration(
-                    prefixIcon:Icon(Icons.email) ,
-                     border: OutlineInputBorder(),
-                  
-                    labelText: 'E-Mail',
-                  ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    TextFormField(
+                      validator: (value) {
+                        if (value!.isEmpty || !value.contains('@')) {
+                          return 'Please enter a valid email address';
+                        }
+                        return null;
+                      },
+                      controller: emailController,
+                      decoration: const InputDecoration(
+                        prefixIcon:Icon(
+                          Icons.email,
+                          color: Colors.grey,
+                        ) ,
+                         border: OutlineInputBorder(),
+                        hintText: 'E-Mail',
+                      ),
+                    ),
+                  ],
                 ),
               ),
               const SizedBox(
@@ -58,7 +70,6 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       minimumSize: const Size(200, 40),
-                      backgroundColor:const  Color.fromARGB(255, 0, 0, 0)
                     ),
                     child: const Text('Reset Password'),
                     onPressed: () {
@@ -78,7 +89,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
       FirebaseAuth.instance.sendPasswordResetEmail(email: emails);
       Get.off(() => Login());
       Get.showSnackbar( GetSnackBar(
-        message: 'An Mail is sent to the $emails',
+        message: 'A Mail is sent to the $emails',
         margin:  const EdgeInsets.all(15),
         borderRadius: 8,
         duration:  const Duration(seconds: 5),

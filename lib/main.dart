@@ -9,10 +9,6 @@ import 'package:va/pages/home.dart';
 import 'package:va/pages/notifications.dart';
 import 'package:va/pages/user_profile.dart';
 import 'package:va/pages/vehicle_select.dart';
-import 'package:va/pages/two_wheeler.dart';
-import 'package:va/pages/three_wheeler.dart';
-import 'package:va/pages/four_wheeler.dart';
-import 'package:va/pages/heavy.dart';
 import 'package:va/pages/login.dart';
 import 'package:va/pages/sign_up.dart';
 import 'package:va/pages/register.dart';
@@ -29,24 +25,37 @@ void main() async {
     debugShowCheckedModeBanner: false,
     theme: ThemeData.dark().copyWith(
       inputDecorationTheme: InputDecorationTheme(
-        border: OutlineInputBorder(),
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(6)),
         focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(6),
           borderSide: BorderSide(
             color: Colors.amberAccent,
           ),
         ),
       ),
+      textButtonTheme: TextButtonThemeData(
+        style: TextButton.styleFrom(
+          foregroundColor: Colors.amberAccent,
+          textStyle: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontFamily: "Poppins",
+          ),
+        )
+      ),
+      textSelectionTheme:
+          TextSelectionThemeData(cursorColor: Colors.amberAccent),
       elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.amberAccent,
-        foregroundColor: Colors.black,
-        textStyle: TextStyle(
-          fontFamily: "Poppins",
-          fontWeight: FontWeight.bold,
-          fontSize: 18.0,
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.amberAccent,
+          foregroundColor: Colors.black,
+          textStyle: TextStyle(
+            fontFamily: "Poppins",
+            fontWeight: FontWeight.bold,
+            fontSize: 18.0,
+          ),
         ),
-      )),
-      scaffoldBackgroundColor: Colors.grey[900],
+      ),
+      scaffoldBackgroundColor: Colors.black,
     ),
     initialRoute: '/home',
     getPages: [
@@ -57,22 +66,6 @@ void main() async {
       GetPage(
         name: "/VehicleSelect",
         page: () => const VehicleSelect(),
-      ),
-      GetPage(
-        name: "/TwoWheeler",
-        page: () => const TwoWheeler(),
-      ),
-      GetPage(
-        name: "/ThreeWheeler",
-        page: () => const ThreeWheeler(),
-      ),
-      GetPage(
-        name: "/FourWheeler",
-        page: () => const FourWheeler(),
-      ),
-      GetPage(
-        name: "/Heavy",
-        page: () => const Heavy(),
       ),
       GetPage(
         name: "/Login",
@@ -92,16 +85,16 @@ void main() async {
       ),
       GetPage(
         name: "/Mechanics",
-        page: () => const Mechanics(),
+        page: () => const Mechanics(mechanicType: "",),
       ),
       GetPage(
         name: "/Notifications",
         page: () => const Notifications(),
       ),
-      GetPage(
-        name: "/MechanicsDetails",
-        page: () => const MechanicsDetails(),
-      ),
+      // GetPage(
+      //   name: "/MechanicsDetails",
+      //   page: () => MechanicsDetails(),
+      // ),
     ],
   ));
 }

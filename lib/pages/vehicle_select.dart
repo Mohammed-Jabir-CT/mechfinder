@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:va/designs/vehicle_button.dart';
+import 'package:get/get.dart';
+
+import 'mechanics.dart';
 
 class VehicleSelect extends StatelessWidget {
   const VehicleSelect({Key? key}) : super(key: key);
@@ -7,7 +10,6 @@ class VehicleSelect extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[900],
       appBar: AppBar(
         title: const Text(
           "MechFinder",
@@ -15,10 +17,10 @@ class VehicleSelect extends StatelessWidget {
             fontFamily: "Poppins",
           ),
         ),
-        backgroundColor: Colors.grey[850],
+        backgroundColor: Colors.grey[900],
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 30.0),
+        padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 14.0),
         child: Center(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -26,7 +28,11 @@ class VehicleSelect extends StatelessWidget {
             children: [
               const Text(
                 "Select Vehicle Type:",
-                style: TextStyle(color: Colors.white, fontSize: 30.0),
+                style: TextStyle(
+                  fontSize: 24.0,
+                  fontFamily: "Poppins",
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(
@@ -41,14 +47,14 @@ class VehicleSelect extends StatelessWidget {
                           vehicleName: "Two Wheeler",
                           vehicleIcon: Icons.two_wheeler,
                           onClick: () {
-                            Navigator.pushNamed(context, '/TwoWheeler');
+                            Get.to(() => Mechanics(mechanicType: "Two Wheeler",));
                           },
                         ),
                         VehicleButton(
                           vehicleName: "Three Wheeler",
                           vehicleIcon: Icons.electric_rickshaw,
                           onClick: () {
-                            Navigator.pushNamed(context, '/ThreeWheeler');
+                            Get.to(() => const Mechanics(mechanicType: "Three Wheeler",));
                           },
                         ),
                       ],
@@ -63,14 +69,14 @@ class VehicleSelect extends StatelessWidget {
                           vehicleName: "Four Wheeler",
                           vehicleIcon: Icons.local_taxi,
                           onClick: () {
-                            Navigator.pushNamed(context, '/FourWheeler');
+                            Get.to(() => const Mechanics(mechanicType: "Four Wheeler",));
                           },
                         ),
                         VehicleButton(
                           vehicleName: "Heavy",
                           vehicleIcon: Icons.directions_bus_rounded,
                           onClick: () {
-                            Navigator.pushNamed(context, '/Heavy');
+                            Get.to(() => const Mechanics(mechanicType: "Heavy",));
                           },
                         ),
                       ],
