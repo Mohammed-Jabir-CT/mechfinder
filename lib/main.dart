@@ -58,7 +58,7 @@ void main() async {
       ),
       scaffoldBackgroundColor: Colors.black,
     ),
-    initialRoute: "/MechanicsHome",
+    initialRoute: "/home",
     getPages: [
       GetPage(
         name: "/home",
