@@ -13,6 +13,7 @@ import 'package:va/pages/login.dart';
 import 'package:va/pages/sign_up.dart';
 import 'package:va/pages/register.dart';
 import 'package:va/pages/mechanics.dart';
+import 'package:va/pages/mechanics_home.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -57,7 +58,7 @@ void main() async {
       ),
       scaffoldBackgroundColor: Colors.black,
     ),
-    initialRoute: '/home',
+    initialRoute: "/MechanicsHome",
     getPages: [
       GetPage(
         name: "/home",
@@ -90,6 +91,10 @@ void main() async {
       GetPage(
         name: "/Notifications",
         page: () => const Notifications(),
+      ),
+      GetPage(
+        name: "/MechanicsHome",
+        page: () => MechanicsHome(),
       ),
       // GetPage(
       //   name: "/MechanicsDetails",

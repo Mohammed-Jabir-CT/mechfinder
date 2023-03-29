@@ -46,15 +46,7 @@ class _NotificationCardState extends State<NotificationCard> {
                     fontWeight: FontWeight.bold
                   ),
                 ),
-                Text(
-                  "Dhammu",
-                  style: TextStyle(
-                    letterSpacing: 1,
-                    fontSize: 16,
-                  ),
-                ),
                 Text("Vengara, 3km away"),
-                Text("Two Wheeler"),
               ],
             ),
           ),

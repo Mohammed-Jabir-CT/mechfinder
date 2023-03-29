@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:va/controllers/home_controller.dart';
+import 'package:va/pages/mechanics_home.dart';
 import 'package:va/pages/notifications.dart';
 import 'package:va/pages/register.dart';
 import 'package:va/pages/vehicle_select.dart';
@@ -53,6 +54,12 @@ class _HomeState extends State<Home> {
         padding: const EdgeInsets.symmetric(horizontal: 14.0, vertical: 14.0),
         child: Column(
           children: [
+            ElevatedButton(
+              onPressed: (){
+                Get.to(()=>MechanicsHome());
+              },
+              child: Text("Mech Home"),
+            ),
             const Text(
               "You Are Here:",
               style: TextStyle(
