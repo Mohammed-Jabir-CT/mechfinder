@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:va/designs/notification_card.dart';
 
+import '../controllers/requests_controller.dart';
+
 class Requests extends StatelessWidget {
-  const Requests({Key? key}) : super(key: key);
+  Requests({Key? key}) : super(key: key);
+
+  final controller = Get.put(RequestsController());
 
   @override
   Widget build(BuildContext context) {
@@ -22,10 +27,15 @@ class Requests extends StatelessWidget {
                   ),
                 ),
               ),
-              NotificationCard(),
-              NotificationCard(),
-              NotificationCard(),
-              NotificationCard(),
+              Expanded(
+                child: Obx(() {
+                  return ListView.builder(
+                      itemCount: controller.requestSnapshots.value?.length,
+                      itemBuilder: (context, index) {
+                        return NotificationCard();
+                      });
+                }),
+              )
             ],
           ),
         ),

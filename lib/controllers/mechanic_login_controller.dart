@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:va/pages/mechanics_home.dart';
 
 class MechanicLoginController extends GetxController {
   TextEditingController emailController = TextEditingController();
@@ -11,13 +12,7 @@ class MechanicLoginController extends GetxController {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: emailController.text, password: passwordController.text);
 
-      Get.showSnackbar(
-        const GetSnackBar(
-          title: "Success",
-          message: 'Successfully logged in.',
-          duration: Duration(seconds: 2),
-        ),
-      );
+      Get.to(const MechanicsHome());
     } on FirebaseAuthException catch (e) {
       Get.showSnackbar(GetSnackBar(
         margin: const EdgeInsets.all(15),

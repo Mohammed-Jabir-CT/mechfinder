@@ -14,7 +14,6 @@ class Mechanics extends StatefulWidget {
 }
 
 class _MechanicsState extends State<Mechanics> {
-
   final controller = Get.put(MechanicsController());
   late String name;
   late String place;
@@ -42,7 +41,7 @@ class _MechanicsState extends State<Mechanics> {
             children: [
               Container(
                 padding:
-                const EdgeInsets.symmetric(vertical: 14, horizontal: 18),
+                    const EdgeInsets.symmetric(vertical: 14, horizontal: 18),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: const [
@@ -66,19 +65,21 @@ class _MechanicsState extends State<Mechanics> {
                         place = controller.mechanics[index]["place"];
                         photo = controller.mechanics[index]["profilePhoto"];
                         city = controller.mechanics[index]["city"];
-                        phoneNumber = controller.mechanics[index]["phoneNumber"];
+                        phoneNumber =
+                            controller.mechanics[index]["phoneNumber"];
                         bio = controller.mechanics[index]["bio"];
-                        mechanicype = controller.mechanics[index]["mechanicType"];
+                        mechanicype =
+                            controller.mechanics[index]["mechanicType"];
                         email = controller.mechanics[index]["email"];
                         return MechanicsListCard(
-                            photo: photo,
-                            name: name,
-                            place: place,
-                            city: city,
-                            phoneNumber: phoneNumber,
-                            bio: bio,
-                            mechanicype: mechanicype,
-                            email: email,
+                          photo: photo,
+                          name: name,
+                          place: place,
+                          city: city,
+                          phoneNumber: phoneNumber,
+                          bio: bio,
+                          mechanicype: mechanicype,
+                          email: email,
                         );
                       });
                 }),

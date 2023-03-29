@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:va/pages/edit_profile.dart';
-import 'package:va/pages/notifications.dart';
-import 'package:va/pages/register.dart';
 import 'package:va/pages/requests.dart';
-import 'package:va/pages/vehicle_select.dart';
 import 'package:va/pages/work_history.dart';
+
+import '../controllers/mechanic_home_controller.dart';
 
 class MechanicsHome extends StatefulWidget {
   const MechanicsHome({Key? key}) : super(key: key);
@@ -15,6 +14,8 @@ class MechanicsHome extends StatefulWidget {
 }
 
 class _MechanicsHomeState extends State<MechanicsHome> {
+  final controller = Get.put(MechanicHomeController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +30,7 @@ class _MechanicsHomeState extends State<MechanicsHome> {
         actions: [
           TextButton(
             onPressed: () {
-              Get.to(()=>EditProfile());
+              Get.to(() => EditProfile());
             },
             child: const Text(
               "EDIT",
@@ -65,60 +66,70 @@ class _MechanicsHomeState extends State<MechanicsHome> {
                   border: Border.all(color: Colors.grey),
                 ),
                 padding: EdgeInsets.symmetric(vertical: 14, horizontal: 18),
-                child: Column(
-                  children: [
-                    Expanded(
-                      child: Column(
+                child: Obx(() {
+                  return Column(
+                    children: [
+                      Expanded(
+                          child: Column(
                         children: [
                           CircleAvatar(
                             radius: 50,
-                            // backgroundImage: NetworkImage(widget.photo),
+                            backgroundImage: NetworkImage(controller
+                                    .mechanicSnapshot.value
+                                    ?.get("profilePhoto") ??
+                                ""),
                             backgroundColor: Colors.grey,
                           ),
                           const SizedBox(
                             height: 12,
-                          ),
-                          Text(
-                            "name",
+                              ),
+                              Text(
+                            controller.mechanicSnapshot.value
+                                    ?.get("fullName") ??
+                                "",
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
                               letterSpacing: 1,
                             ),
                           ),
-                          const SizedBox(
-                            height: 12,
-                          ),
-                          Text(
-                            "phone no",
+                              const SizedBox(
+                                height: 12,
+                              ),
+                              Text(
+                            controller.mechanicSnapshot.value
+                                    ?.get("phoneNumber") ??
+                                "",
                             style: TextStyle(
                               fontSize: 16,
                             ),
                           ),
-                          const SizedBox(
-                            height: 12,
-                          ),
-                          Text(
-                            "place, city",
+                              const SizedBox(
+                                height: 12,
+                              ),
+                              Text(
+                                "${controller.mechanicSnapshot.value?.get("place") ?? ""}, ${controller.mechanicSnapshot.value?.get("city") ?? ""}",
                             style: TextStyle(
                               fontSize: 16,
                             ),
                           ),
-                          const SizedBox(
-                            height: 12,
-                          ),
-                          Text(
-                            "Two Wheeler",
+                              const SizedBox(
+                                height: 12,
+                              ),
+                              Text(
+                            controller.mechanicSnapshot.value
+                                    ?.get("mechanicType") ??
+                                "",
                             style: TextStyle(
                               fontSize: 16,
                             ),
                           ),
-                          const SizedBox(
-                            height: 12,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: const [
+                              const SizedBox(
+                                height: 12,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: const [
                               Text(
                                 "3km away",
                                 style: TextStyle(
@@ -129,27 +140,28 @@ class _MechanicsHomeState extends State<MechanicsHome> {
                             ],
                           ),
                         ],
-                      ),
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        InputDecorator(
-                          decoration: InputDecoration(
-                            labelText: "Bio",
-                            border: OutlineInputBorder(),
-                          ),
-                          child: Text(
-                            "bio",
-                            style: TextStyle(
-                              fontSize: 16,
+                      )),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          InputDecorator(
+                            decoration: InputDecoration(
+                              labelText: "bio",
+                              border: OutlineInputBorder(),
+                            ),
+                            child: Text(
+                              controller.mechanicSnapshot.value?.get("bio") ??
+                                  "",
+                              style: TextStyle(
+                                fontSize: 16,
+                              ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+                        ],
+                      ),
+                    ],
+                  );
+                }),
               ),
             ),
             SizedBox(
@@ -164,7 +176,7 @@ class _MechanicsHomeState extends State<MechanicsHome> {
                     height: 50,
                     child: ElevatedButton(
                       onPressed: () {
-                        Get.to(()=>Requests());
+                        Get.to(() => Requests());
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -191,7 +203,7 @@ class _MechanicsHomeState extends State<MechanicsHome> {
                     height: 50,
                     child: ElevatedButton(
                       onPressed: () {
-                        Get.to(()=>WorkHistory());
+                        Get.to(() => WorkHistory());
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
