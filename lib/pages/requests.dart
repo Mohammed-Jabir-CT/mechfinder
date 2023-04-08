@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:va/designs/notification_card.dart';
-
+import 'package:va/designs/request_card.dart';
 import '../controllers/requests_controller.dart';
 
 class Requests extends StatelessWidget {
@@ -32,7 +31,7 @@ class Requests extends StatelessWidget {
                   return ListView.builder(
                       itemCount: controller.requestSnapshots.value?.length,
                       itemBuilder: (context, index) {
-                        return NotificationCard();
+                        return RequestCard();
                       });
                 }),
               )

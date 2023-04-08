@@ -2,7 +2,6 @@
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
-import 'package:va/pages/mechanics_details.dart';
 import 'firebase_options.dart';
 import 'package:flutter/material.dart';
 import 'package:va/pages/home.dart';
@@ -24,7 +23,9 @@ void main() async {
   await Firebase.initializeApp();
   runApp(GetMaterialApp(
     debugShowCheckedModeBanner: false,
-    theme: ThemeData.dark().copyWith(
+    theme: ThemeData(
+      fontFamily: "Poppins",
+      brightness: Brightness.dark,
       inputDecorationTheme: InputDecorationTheme(
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(6)),
         focusedBorder: OutlineInputBorder(
@@ -58,7 +59,7 @@ void main() async {
       ),
       scaffoldBackgroundColor: Colors.black,
     ),
-    initialRoute: "/home",
+    initialRoute: "/Login",
     getPages: [
       GetPage(
         name: "/home",

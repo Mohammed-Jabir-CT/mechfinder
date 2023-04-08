@@ -206,9 +206,10 @@ class MechanicSignup extends StatelessWidget {
                       SizedBox(
                         width: double.infinity,
                         height: 50,
-                        child: ElevatedButton(
+                        child: ElevatedButton.icon(
                           onPressed: controller.pickLocation,
-                          child: const Text(
+                          icon: Icon(Icons.add_location_alt),
+                          label: const Text(
                             "Select Location",
                           ),
                         ),
@@ -219,9 +220,10 @@ class MechanicSignup extends StatelessWidget {
                       SizedBox(
                         width: double.infinity,
                         height: 50,
-                        child: ElevatedButton(
+                        child: ElevatedButton.icon(
                           onPressed: controller.signup,
-                          child: const Text(
+                          icon: Icon(Icons.send),
+                          label: const Text(
                             "Submit",
                           ),
                         ),

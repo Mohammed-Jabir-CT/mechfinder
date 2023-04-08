@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:va/controllers/home_controller.dart';
+import 'package:va/pages/admin_login.dart';
 import 'package:va/pages/mechanics_home.dart';
 import 'package:va/pages/notifications.dart';
 import 'package:va/pages/register.dart';
+import 'package:va/pages/user_feedback.dart';
 import 'package:va/pages/vehicle_select.dart';
 import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
 
@@ -29,14 +31,6 @@ class _HomeState extends State<Home> {
         ),
         backgroundColor: Colors.grey[900],
         actions: [
-          IconButton(
-            onPressed: () {
-              Get.to(() => const Notifications());
-            },
-            icon: const Icon(
-              Icons.notifications,
-            ),
-          ),
           TextButton(
             onPressed: () {
               Get.to(() => const Register());
@@ -48,18 +42,59 @@ class _HomeState extends State<Home> {
               ),
             ),
           ),
+          IconButton(
+            onPressed: () {
+              Get.to(() => const Notifications());
+            },
+            icon: const Icon(
+              Icons.notifications,
+            ),
+          ),
+          PopupMenuButton(
+              itemBuilder: (context){
+                return [
+                  PopupMenuItem<int>(
+                    value: 0,
+                    child: Text("Admin"),
+                  ),
+                  PopupMenuItem<int>(
+                    value: 1,
+                    child: Text("Mechanic"),
+                  ),
+                  PopupMenuItem<int>(
+                    value: 2,
+                    child: Text("Logout"),
+                  ),
+                  PopupMenuItem<int>(
+                    value: 3,
+                    child: Text("To Add"),
+                  ),
+                ];
+              },
+              onSelected:(value){
+                if(value == 0){
+                  Get.to(()=>AdminLogin());
+                }else if(value == 2){
+                  final snackBar= SnackBar(
+                      content: Text("logged out"),
+                  );
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                }
+                else if(value == 1){
+                  Get.to(()=> MechanicsHome());
+                }
+                else{
+                  Get.to(()=> UserFeedback());
+                }
+              }
+          ),
+
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 14.0, vertical: 14.0),
+        padding: const EdgeInsets.symmetric( vertical: 14.0),
         child: Column(
           children: [
-            ElevatedButton(
-              onPressed: (){
-                Get.to(()=>MechanicsHome());
-              },
-              child: Text("Mech Home"),
-            ),
             const Text(
               "You Are Here:",
               style: TextStyle(
@@ -104,7 +139,7 @@ class _HomeState extends State<Home> {
                   markerOption: MarkerOption(
                       defaultMarker: MarkerIcon(
                         icon: Icon(
-                          Icons.person_pin_circle,
+                          Icons.location_on_rounded,
                           color: Colors.blue,
                           size: 56,
                         ),

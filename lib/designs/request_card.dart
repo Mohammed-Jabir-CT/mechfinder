@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class NotificationCard extends StatefulWidget {
-  const NotificationCard({super.key});
+class RequestCard extends StatefulWidget {
+  const RequestCard({super.key});
 
   @override
-  State<NotificationCard> createState() => _NotificationCardState();
+  State<RequestCard> createState() => _RequestCardState();
 }
 
-class _NotificationCardState extends State<NotificationCard> {
+class _RequestCardState extends State<RequestCard> {
   @override
   Widget build(BuildContext context) {
     return Container(

@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:va/pages/edit_profile.dart';
 import 'package:va/pages/requests.dart';
 import 'package:va/pages/work_history.dart';
-
 import '../controllers/mechanic_home_controller.dart';
 
 class MechanicsHome extends StatefulWidget {
@@ -28,16 +27,11 @@ class _MechanicsHomeState extends State<MechanicsHome> {
         ),
         backgroundColor: Colors.grey[900],
         actions: [
-          TextButton(
+          IconButton(
             onPressed: () {
               Get.to(() => EditProfile());
             },
-            child: const Text(
-              "EDIT",
-              style: TextStyle(
-                color: Colors.white,
-              ),
-            ),
+            icon: Icon(Icons.edit),
           ),
         ],
       ),
@@ -88,7 +82,7 @@ class _MechanicsHomeState extends State<MechanicsHome> {
                                     ?.get("fullName") ??
                                 "",
                             style: TextStyle(
-                              fontSize: 18,
+                              fontSize: 22,
                               fontWeight: FontWeight.bold,
                               letterSpacing: 1,
                             ),
@@ -101,7 +95,7 @@ class _MechanicsHomeState extends State<MechanicsHome> {
                                     ?.get("phoneNumber") ??
                                 "",
                             style: TextStyle(
-                              fontSize: 16,
+                              fontSize: 17,
                             ),
                           ),
                               const SizedBox(
@@ -110,7 +104,7 @@ class _MechanicsHomeState extends State<MechanicsHome> {
                               Text(
                                 "${controller.mechanicSnapshot.value?.get("place") ?? ""}, ${controller.mechanicSnapshot.value?.get("city") ?? ""}",
                             style: TextStyle(
-                              fontSize: 16,
+                              fontSize: 17,
                             ),
                           ),
                               const SizedBox(
@@ -121,7 +115,7 @@ class _MechanicsHomeState extends State<MechanicsHome> {
                                     ?.get("mechanicType") ??
                                 "",
                             style: TextStyle(
-                              fontSize: 16,
+                              fontSize: 17,
                             ),
                           ),
                               const SizedBox(
@@ -134,30 +128,29 @@ class _MechanicsHomeState extends State<MechanicsHome> {
                                 "3km away",
                                 style: TextStyle(
                                   color: Colors.amberAccent,
-                                  fontSize: 16,
+                                  fontSize: 17,
                                 ),
                               ),
                             ],
                           ),
                         ],
                       )),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          InputDecorator(
-                            decoration: InputDecoration(
-                              labelText: "bio",
-                              border: OutlineInputBorder(),
-                            ),
-                            child: Text(
-                              controller.mechanicSnapshot.value?.get("bio") ??
-                                  "",
-                              style: TextStyle(
-                                fontSize: 16,
-                              ),
-                            ),
+                      InputDecorator(
+                        decoration: InputDecoration(
+                          labelText: "BIO",
+                          labelStyle: TextStyle(
+                            fontSize: 17,
+                            fontWeight: FontWeight.bold,
                           ),
-                        ],
+                          border: OutlineInputBorder(),
+                        ),
+                        child: Text(
+                          controller.mechanicSnapshot.value?.get("bio") ??
+                              "",
+                          style: TextStyle(
+                            fontSize: 17,
+                          ),
+                        ),
                       ),
                     ],
                   );

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:va/designs/notification_card.dart';
+import 'package:va/designs/request_status_card.dart';
 
 class Notifications extends StatelessWidget {
   const Notifications({Key? key}) : super(key: key);
@@ -22,10 +22,9 @@ class Notifications extends StatelessWidget {
                   ),
                 ),
               ),
-              NotificationCard(),
-              NotificationCard(),
-              NotificationCard(),
-              NotificationCard(),
+              RequestStatusCard(),
+              RequestStatusCard(),
+              RequestStatusCard(),
             ],
           ),
         ),

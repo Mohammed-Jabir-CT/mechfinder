@@ -21,7 +21,7 @@ class _MechanicsState extends State<Mechanics> {
   late String phoneNumber;
   late String city;
   late String bio;
-  late String mechanicype;
+  late String mechanicType;
   late String email;
 
   @override
@@ -33,59 +33,64 @@ class _MechanicsState extends State<Mechanics> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: SizedBox(
-          width: double.infinity,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Container(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 14, horizontal: 18),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Text(
-                      "Find Mechanics Nearby",
-                      style: TextStyle(
-                        fontFamily: "Poppins",
-                        fontSize: 26.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Expanded(
-                child: Obx(() {
-                  return ListView.builder(
-                      itemCount: controller.mechanics.length,
-                      itemBuilder: (context, index) {
-                        name = controller.mechanics[index]["fullName"];
-                        place = controller.mechanics[index]["place"];
-                        photo = controller.mechanics[index]["profilePhoto"];
-                        city = controller.mechanics[index]["city"];
-                        phoneNumber =
-                            controller.mechanics[index]["phoneNumber"];
-                        bio = controller.mechanics[index]["bio"];
-                        mechanicype =
-                            controller.mechanics[index]["mechanicType"];
-                        email = controller.mechanics[index]["email"];
-                        return MechanicsListCard(
-                          photo: photo,
-                          name: name,
-                          place: place,
-                          city: city,
-                          phoneNumber: phoneNumber,
-                          bio: bio,
-                          mechanicype: mechanicype,
-                          email: email,
-                        );
-                      });
-                }),
-              ),
-            ],
+        appBar: AppBar(
+          title: const Text(
+            "MechFinder",
+            style: TextStyle(
+            fontFamily: "Poppins",
           ),
+          ),
+          backgroundColor: Colors.grey[900],
+        ),
+      body: SizedBox(
+        width: double.infinity,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Container(
+              padding:
+                  const EdgeInsets.symmetric(vertical: 14, horizontal: 18),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  Text(
+                    "Find Mechanics Nearby",
+                    style: TextStyle(
+                      fontFamily: "Poppins",
+                      fontSize: 26.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              child: Obx(() {
+                return ListView.builder(
+                    itemCount: controller.mechanics.length,
+                    itemBuilder: (context, index) {
+                      name = controller.mechanics[index]["fullName"];
+                      place = controller.mechanics[index]["place"];
+                      photo = controller.mechanics[index]["profilePhoto"];
+                      city = controller.mechanics[index]["city"];
+                      phoneNumber = controller.mechanics[index]["phoneNumber"];
+                      bio = controller.mechanics[index]["bio"];
+                      mechanicType = controller.mechanics[index]["mechanicType"];
+                      email = controller.mechanics[index]["email"];
+                      return MechanicsListCard(
+                        photo: photo,
+                        name: name,
+                        place: place,
+                        city: city,
+                        phoneNumber: phoneNumber,
+                        bio: bio,
+                        mechanicType: mechanicType,
+                        email: email,
+                      );
+                    });
+              }),
+            ),
+          ],
         ),
       ),
     );

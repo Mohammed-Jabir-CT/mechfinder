@@ -1,45 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:va/controllers/mechanics_details_controller.dart';
 
-class MechanicsDetails extends StatefulWidget {
-  final controller = Get.put(MechanicsDetailsController());
-
-  late String name;
-  late String place;
-  late String photo;
-  late String phoneNumber;
-  late String city;
-  late String bio;
-  late String mechanicType;
-  late String email;
-
-  MechanicsDetails(
-      {super.key,
-      required this.photo,
-      required this.name,
-      required this.place,
-      required this.city,
-      required this.phoneNumber,
-      required this.bio,
-      required this.mechanicType,
-      required this.email});
+class NewMechanicsDetails extends StatefulWidget {
+  const NewMechanicsDetails({Key? key}) : super(key: key);
 
   @override
-  State<MechanicsDetails> createState() => _MechanicsDetailsState();
+  State<NewMechanicsDetails> createState() => _NewMechanicsDetailsState();
 }
 
-class _MechanicsDetailsState extends State<MechanicsDetails> {
-
-  Future<void> _makePhoneCall(String phoneNumber) async {
-    final Uri launchUri = Uri(
-      scheme: 'tel',
-      path: phoneNumber,
-    );
-    await launchUrl(launchUri);
-  }
-
+class _NewMechanicsDetailsState extends State<NewMechanicsDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,14 +52,14 @@ class _MechanicsDetailsState extends State<MechanicsDetails> {
                         children: [
                           CircleAvatar(
                             radius: 50,
-                            backgroundImage: NetworkImage(widget.photo),
+                            // backgroundImage: NetworkImage(widget.photo),
                             backgroundColor: Colors.grey,
                           ),
                           const SizedBox(
                             height: 12,
                           ),
                           Text(
-                            widget.name,
+                            "widget.name",
                             style: TextStyle(
                               fontSize: 22,
                               fontWeight: FontWeight.bold,
@@ -102,7 +70,7 @@ class _MechanicsDetailsState extends State<MechanicsDetails> {
                             height: 12,
                           ),
                           Text(
-                            widget.phoneNumber,
+                            "widget.phoneNumber",
                             style: TextStyle(
                               fontSize: 17,
                             ),
@@ -110,21 +78,16 @@ class _MechanicsDetailsState extends State<MechanicsDetails> {
                           const SizedBox(
                             height: 12,
                           ),
-                          Text(
-                            "${widget.place}, ${widget.city}",
-                            style: TextStyle(
-                              fontSize: 17,
-                            ),
-                          ),
+                          // Text(
+                          //   "${widget.place}, ${widget.city}",
+                          //   style: TextStyle(
+                          //     fontSize: 17,
+                          //   ),
+                          // ),
                           const SizedBox(
                             height: 12,
                           ),
-                          Text(
-                            "3km away",
-                            style: TextStyle(
-                              fontSize: 17,
-                            ),
-                          ),
+                          TextButton(onPressed: () {}, child: Text("Location"))
                         ],
                       ),
                     ),
@@ -140,12 +103,12 @@ class _MechanicsDetailsState extends State<MechanicsDetails> {
                             ),
                             border: OutlineInputBorder(),
                           ),
-                          child: Text(
-                            widget.bio,
-                            style: TextStyle(
-                              fontSize: 17,
-                            ),
-                          ),
+                          // child: Text(
+                          //   widget.bio,
+                          //   style: TextStyle(
+                          //     fontSize: 17,
+                          //   ),
+                          // ),
                         ),
                       ],
                     ),
@@ -164,50 +127,55 @@ class _MechanicsDetailsState extends State<MechanicsDetails> {
                     width: double.infinity,
                     height: 50,
                     child: ElevatedButton(
-                      onPressed: () {
-                        setState(() {
-                          _makePhoneCall(widget.phoneNumber);
-                        });
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          Icon(Icons.call),
-                          Text(
-                            "Call",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18,
-                                fontFamily: "Poppins"),
-                          ),
-                        ],
-                      )
-                    ),
+                        onPressed: () {
+                          // setState(() {
+                          //   _makePhoneCall(widget.phoneNumber);
+                          // });
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const [
+                            Icon(Icons.call),
+                            Text(
+                              "Call",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                  fontFamily: "Poppins"),
+                            ),
+                          ],
+                        )),
                   ),
                   const SizedBox(
                     height: 12,
                   ),
-                  SizedBox(
-                    width: double.infinity,
-                    height: 50,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        widget.controller.sendLocation(email: widget.email);
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(Icons.location_on_rounded),
-                          Text(
-                            "Send Location",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18,
-                                fontFamily: "Poppins"),
-                          ),
-                        ],
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            TextButton.icon(
+                              onPressed: () {},
+                              icon: Icon(Icons.done),
+                              label: Text("Accept"),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
+                      Expanded(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            TextButton.icon(
+                              onPressed: () {},
+                              icon: Icon(Icons.not_interested),
+                              label: Text("Decline"),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),

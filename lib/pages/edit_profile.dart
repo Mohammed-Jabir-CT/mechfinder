@@ -205,8 +205,14 @@ class _EditProfileState extends State<EditProfile> {
                         child: ElevatedButton(
                           // onPressed: controller.pickLocation,
                           onPressed: () {  },
-                          child: const Text(
-                            "Select Location",
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(Icons.add_location_alt),
+                              Text(
+                                "Select Location",
+                              ),
+                            ],
                           ),
                         ),
                       ),
@@ -219,13 +225,19 @@ class _EditProfileState extends State<EditProfile> {
                         child: ElevatedButton(
                           onPressed: (){},
                           // onPressed: controller.signup,
-                          child: const Text(
-                            "Update",
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(Icons.upload),
+                              Text(
+                                "Update",
+                              ),
+                            ],
                           ),
                         ),
                       ),
                     ],
-                  )
+                  ),
                 ],
               ),
             ),

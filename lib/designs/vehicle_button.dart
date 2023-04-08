@@ -46,7 +46,7 @@ class _VehicleButtonState extends State<VehicleButton> {
                 widget.vehicleName,
                 style: const TextStyle(
                   color: Colors.black,
-                  fontSize: 20.0,
+                  fontSize: 18.0,
                   fontWeight: FontWeight.bold,
                 ),
               ),
