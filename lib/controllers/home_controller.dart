@@ -2,17 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-
+import 'package:va/pages/login.dart';
+import 'package:va/pages/register.dart';
 
 class HomeController extends GetxController {
-MapController mapController = MapController(
+  MapController mapController = MapController(
     initMapWithUserPosition: true,
     areaLimit: BoundingBox(
       east: 10.4922941,
       north: 47.8084648,
       south: 45.817995,
-      west:  5.9559113,
+      west: 5.9559113,
     ),
   );
 
@@ -39,14 +41,20 @@ Future<bool> getUserLocation(BuildContext context) async {
     if (permission == LocationPermission.denied) {
       ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Location permissions are denied')));
+        return false;
+      }
+    }
+    if (permission == LocationPermission.deniedForever) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text(
+              'Location permissions are permanently denied, we cannot request permissions.')));
       return false;
     }
+    return true;
   }
-  if (permission == LocationPermission.deniedForever) {
-    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text('Location permissions are permanently denied, we cannot request permissions.')));
-    return false;
+
+  Future<void> logout() async {
+    await FirebaseAuth.instance.signOut();
+    Get.offAll(() => Register());
   }
-  return true;
-}
 }

@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_osm_plugin/flutter_osm_plugin.dart' as osm;
 import 'package:get/get.dart';
@@ -13,15 +13,34 @@ class MechanicsDetailsController extends GetxController {
       osm.GeoPoint userLocation =
           await homeController.mapController.myLocation();
 
-      Map<String, dynamic> payload = {
-        "location": GeoPoint(userLocation.latitude, userLocation.longitude)
+      Map<String, dynamic> mechanicPayload = {
+        "location": GeoPoint(userLocation.latitude, userLocation.longitude),
+        "user_ref": FirebaseFirestore.instance
+            .collection("user")
+            .doc(FirebaseAuth.instance.currentUser!.email),
+        "status": null
+      };
+
+      Map<String, dynamic> userPayload = {
+        "location": GeoPoint(userLocation.latitude, userLocation.longitude),
+        "mechanic_ref":
+            FirebaseFirestore.instance.collection("mechanics").doc(email),
+        "status": null
       };
 
       await FirebaseFirestore.instance
           .collection("mechanics")
           .doc(email)
           .collection("notifications")
-          .add(payload);
+          .doc(FirebaseAuth.instance.currentUser!.email)
+          .set(mechanicPayload);
+
+      await FirebaseFirestore.instance
+          .collection("user")
+          .doc(FirebaseAuth.instance.currentUser!.email)
+          .collection("notifications")
+          .doc(email)
+          .set(userPayload);
 
       Get.showSnackbar(
         const GetSnackBar(

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:va/pages/edit_profile.dart';
 import 'package:va/pages/requests.dart';
 import 'package:va/pages/work_history.dart';
+
 import '../controllers/mechanic_home_controller.dart';
 
 class MechanicsHome extends StatefulWidget {
@@ -32,6 +33,17 @@ class _MechanicsHomeState extends State<MechanicsHome> {
               Get.to(() => EditProfile());
             },
             icon: Icon(Icons.edit),
+          ),
+          PopupMenuButton(
+            itemBuilder: (context) {
+              return [
+                PopupMenuItem<int>(
+                  onTap: controller.logout,
+                  value: 2,
+                  child: Text("Logout"),
+                ),
+              ];
+            },
           ),
         ],
       ),

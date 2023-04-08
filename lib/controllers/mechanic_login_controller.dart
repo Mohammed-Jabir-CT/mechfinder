@@ -12,7 +12,7 @@ class MechanicLoginController extends GetxController {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: emailController.text, password: passwordController.text);
 
-      Get.to(const MechanicsHome());
+      Get.offAll(const MechanicsHome());
     } on FirebaseAuthException catch (e) {
       Get.showSnackbar(GetSnackBar(
         margin: const EdgeInsets.all(15),

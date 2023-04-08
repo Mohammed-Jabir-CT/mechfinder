@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 
 class RequestStatusCard extends StatefulWidget {
-  const RequestStatusCard({Key? key}) : super(key: key);
+  const RequestStatusCard(
+      {Key? key, required this.status, required this.mechanicName})
+      : super(key: key);
+
+  final dynamic status;
+  final String mechanicName;
 
   @override
   State<RequestStatusCard> createState() => _RequestStatusCardState();
 }
 
 class _RequestStatusCardState extends State<RequestStatusCard> {
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -42,8 +46,7 @@ class _RequestStatusCardState extends State<RequestStatusCard> {
                     fontSize: 18,
                     fontFamily: "Poppins",
                     letterSpacing: 1,
-                    fontWeight: FontWeight.bold
-                ),
+                    fontWeight: FontWeight.bold),
               ),
               Row(
                 children: [
@@ -54,15 +57,14 @@ class _RequestStatusCardState extends State<RequestStatusCard> {
                     ),
                   ),
                   Text(
-                    "Anwar Sabith",
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.amberAccent
-                    ),
+                    widget.mechanicName,
+                    style: TextStyle(fontSize: 16, color: Colors.amberAccent),
                   ),
                 ],
               ),
-              SizedBox(height: 4,),
+              SizedBox(
+                height: 4,
+              ),
               Row(
                 children: [
                   Text(
@@ -72,11 +74,12 @@ class _RequestStatusCardState extends State<RequestStatusCard> {
                     ),
                   ),
                   Text(
-                    "Accepted",
-                    style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.amberAccent
-                    ),
+                    widget.status == 0
+                        ? "Declined"
+                        : widget.status == 1
+                            ? "Accepted"
+                            : "Waiting",
+                    style: TextStyle(fontSize: 16, color: Colors.amberAccent),
                   ),
                 ],
               ),

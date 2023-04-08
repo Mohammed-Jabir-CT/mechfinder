@@ -1,7 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
+import 'package:va/pages/home.dart';
 import 'package:va/pages/login.dart';
 
 class SignUp extends StatefulWidget {
@@ -20,26 +21,29 @@ class _SignUpState extends State<SignUp> {
     try {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: email.text, password: password.text);
+
+      final payload = {
+        "email": email.text,
+        "password": password.text,
+      };
+
+      await FirebaseFirestore.instance
+          .collection("user")
+          .doc(email.text)
+          .set(payload);
+
+      Get.offAll(() => Home());
     } on FirebaseAuthException catch (e) {
       if (e.code == "email-already-in-use") {
         Get.showSnackbar(const GetSnackBar(
           margin: EdgeInsets.all(15),
           borderRadius: 8,
           message:
-              ('There already exists an account with the given email address.'),
+          ('There already exists an account with the given email address.'),
           duration: Duration(seconds: 3),
           backgroundColor: Colors.red,
         ));
       }
-    }
-  }
-
-  void registeruser() async {
-    if (formkey.currentState!.validate()) {
-      await FirebaseFirestore.instance.collection('User').doc(email.text).set({
-        'Email': email,
-        "password": password,
-      });
     }
   }
 
@@ -126,7 +130,6 @@ class _SignUpState extends State<SignUp> {
                           child: ElevatedButton(
                             onPressed: () {
                               createuser();
-                              registeruser();
                             },
                             child: const Text("Sign Up"),
                           ),

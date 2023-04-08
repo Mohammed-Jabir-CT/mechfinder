@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+import 'package:va/pages/register.dart';
 
 class MechanicHomeController extends GetxController {
   final mechanicSnapshot = Rxn<DocumentSnapshot>();
@@ -23,5 +24,10 @@ class MechanicHomeController extends GetxController {
         .collection("mechanics")
         .doc(currentUser.email)
         .get();
+  }
+
+  Future<void> logout() async {
+    await FirebaseAuth.instance.signOut();
+    Get.offAll(() => Register());
   }
 }

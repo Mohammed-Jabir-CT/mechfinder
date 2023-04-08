@@ -44,7 +44,7 @@ class _HomeState extends State<Home> {
           ),
           IconButton(
             onPressed: () {
-              Get.to(() => const Notifications());
+              Get.to(() => Notifications());
             },
             icon: const Icon(
               Icons.notifications,
@@ -62,9 +62,10 @@ class _HomeState extends State<Home> {
                     child: Text("Mechanic"),
                   ),
                   PopupMenuItem<int>(
-                    value: 2,
-                    child: Text("Logout"),
-                  ),
+                    onTap: controller.logout,
+                value: 2,
+                child: Text("Logout"),
+              ),
                   PopupMenuItem<int>(
                     value: 3,
                     child: Text("To Add"),

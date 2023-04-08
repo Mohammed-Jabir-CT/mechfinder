@@ -1,18 +1,19 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:firebase_core/firebase_core.dart';
-import 'package:get/get.dart';
-import 'firebase_options.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:va/pages/home.dart';
-import 'package:va/pages/notifications.dart';
-import 'package:va/pages/user_profile.dart';
-import 'package:va/pages/vehicle_select.dart';
 import 'package:va/pages/login.dart';
-import 'package:va/pages/sign_up.dart';
-import 'package:va/pages/register.dart';
 import 'package:va/pages/mechanics.dart';
 import 'package:va/pages/mechanics_home.dart';
+import 'package:va/pages/notifications.dart';
+import 'package:va/pages/register.dart';
+import 'package:va/pages/sign_up.dart';
+import 'package:va/pages/user_profile.dart';
+import 'package:va/pages/vehicle_select.dart';
+
+import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -59,7 +60,7 @@ void main() async {
       ),
       scaffoldBackgroundColor: Colors.black,
     ),
-    initialRoute: "/Login",
+    initialRoute: "/Register",
     getPages: [
       GetPage(
         name: "/home",
@@ -91,7 +92,7 @@ void main() async {
       ),
       GetPage(
         name: "/Notifications",
-        page: () => const Notifications(),
+        page: () => Notifications(),
       ),
       GetPage(
         name: "/MechanicsHome",

@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -111,7 +112,10 @@ class MechanicSignupController extends GetxController {
         "location": GeoPoint(location.value.latitude, location.value.longitude),
       };
 
-      await FirebaseFirestore.instance.collection("mechanics").doc(emailController.text).set(payload);
+      await FirebaseFirestore.instance
+          .collection("mechanics")
+          .doc(emailController.text)
+          .set(payload);
 
       Get.showSnackbar(
         const GetSnackBar(

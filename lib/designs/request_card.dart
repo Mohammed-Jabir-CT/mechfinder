@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:va/controllers/request_card_controller.dart';
 
-class RequestCard extends StatefulWidget {
-  const RequestCard({super.key});
+class RequestCard extends StatelessWidget {
+  RequestCard({super.key, required this.id});
 
-  @override
-  State<RequestCard> createState() => _RequestCardState();
-}
+  final String id;
 
-class _RequestCardState extends State<RequestCard> {
+  final controller = Get.put(RequestCardController());
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -39,12 +40,11 @@ class _RequestCardState extends State<RequestCard> {
                 Text(
                   "Request",
                   style: TextStyle(
-                    color: Colors.grey.shade500,
-                    fontSize: 14,
-                    fontFamily: "Poppins",
-                    letterSpacing: 1,
-                    fontWeight: FontWeight.bold
-                  ),
+                      color: Colors.grey.shade500,
+                      fontSize: 14,
+                      fontFamily: "Poppins",
+                      letterSpacing: 1,
+                      fontWeight: FontWeight.bold),
                 ),
                 Text("Vengara, 3km away"),
               ],
@@ -54,13 +54,13 @@ class _RequestCardState extends State<RequestCard> {
             children: [
               Expanded(
                 child: TextButton(
-                  onPressed: (){},
+                  onPressed: () {
+                    controller.acceptRequest(id: id);
+                  },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: const [
-                      Icon(
-                          Icons.done
-                      ),
+                      Icon(Icons.done),
                       Text("Accept"),
                     ],
                   ),
@@ -68,13 +68,11 @@ class _RequestCardState extends State<RequestCard> {
               ),
               Expanded(
                 child: TextButton(
-                  onPressed: (){},
+                  onPressed: () {},
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: const [
-                      Icon(
-                          Icons.not_interested
-                      ),
+                      Icon(Icons.not_interested),
                       Text("Decline"),
                     ],
                   ),
