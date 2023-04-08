@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:va/controllers/mechanics_details_controller.dart';
+import 'package:va/designs/feedback_card.dart';
 
 class MechanicsDetails extends StatefulWidget {
   final controller = Get.put(MechanicsDetailsController());
@@ -119,11 +120,37 @@ class _MechanicsDetailsState extends State<MechanicsDetails> {
                           const SizedBox(
                             height: 12,
                           ),
-                          Text(
-                            "3km away",
-                            style: TextStyle(
-                              fontSize: 17,
-                            ),
+                          TextButton(
+                            onPressed: (){
+                              showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return Dialog(
+                                    elevation: 16,
+                                    backgroundColor: Colors.grey[900],
+                                    child: Container(
+                                      child: ListView(
+                                        shrinkWrap: true,
+                                        children: <Widget>[
+                                          SizedBox(height: 20),
+                                          Center(child: Text(
+                                            "Feedbacks",
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          )),
+                                          SizedBox(height: 20),
+                                          FeedbackCard(),
+                                          FeedbackCard(),
+                                        ],
+                                      ),
+                                    ),
+                                  );
+                                },
+                              );
+                            },
+                            child: Text("Feedbacks")
                           ),
                         ],
                       ),

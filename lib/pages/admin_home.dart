@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:va/designs/vehicle_button.dart';
 import 'package:va/pages/admin_mechanic.dart';
+import 'package:va/pages/admin_users.dart';
 
 class AdminHome extends StatefulWidget {
   const AdminHome({Key? key}) : super(key: key);
@@ -58,6 +59,7 @@ class _AdminHomeState extends State<AdminHome> {
                       vehicleName: "Users",
                       vehicleIcon: Icons.person,
                       onClick: () {
+                        Get.to(()=> AdminUsers());
                       },
                     ),
                   ],

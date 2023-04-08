@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:va/pages/admin_login.dart';
 import 'package:va/pages/login.dart';
 import 'package:va/pages/mechanic_signup.dart';
 
@@ -72,6 +73,16 @@ class Register extends StatelessWidget {
                       ),
                     ],
                   ),
+                ),
+                Column(
+                  children: [
+                    TextButton(
+                        onPressed: (){
+                          Get.to(()=>AdminLogin());
+                        },
+                        child: Text("Admin"),
+                    ),
+                  ],
                 ),
               ],
             ),

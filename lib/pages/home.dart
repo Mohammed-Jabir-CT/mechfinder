@@ -54,14 +54,6 @@ class _HomeState extends State<Home> {
               itemBuilder: (context){
                 return [
                   PopupMenuItem<int>(
-                    value: 0,
-                    child: Text("Admin"),
-                  ),
-                  PopupMenuItem<int>(
-                    value: 1,
-                    child: Text("Mechanic"),
-                  ),
-                  PopupMenuItem<int>(
                     onTap: controller.logout,
                 value: 2,
                 child: Text("Logout"),
@@ -73,16 +65,11 @@ class _HomeState extends State<Home> {
                 ];
               },
               onSelected:(value){
-                if(value == 0){
-                  Get.to(()=>AdminLogin());
-                }else if(value == 2){
+                if(value == 2){
                   final snackBar= SnackBar(
                       content: Text("logged out"),
                   );
                   ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                }
-                else if(value == 1){
-                  Get.to(()=> MechanicsHome());
                 }
                 else{
                   Get.to(()=> UserFeedback());
