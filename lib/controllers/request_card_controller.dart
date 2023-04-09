@@ -5,25 +5,69 @@ import 'package:get/get.dart';
 import '../pages/route.dart';
 
 class RequestCardController extends GetxController {
-  Future<void> acceptRequest({required String id}) async {
-    DocumentSnapshot notificationsSnapshot = await FirebaseFirestore.instance
+  final notificationSnapshot = Rxn<DocumentSnapshot>();
+
+  Future<void> fetchRequest({required String id}) async {
+    if (id == "") {
+      return;
+    }
+
+    notificationSnapshot.value = await FirebaseFirestore.instance
         .collection("mechanics")
         .doc(FirebaseAuth.instance.currentUser!.email)
         .collection("notifications")
         .doc(id)
         .get();
+  }
 
+  Future<void> acceptRequest({required String id}) async {
     await FirebaseFirestore.instance
-        .collection("user")
+        .collection("mechanics")
+        .doc(FirebaseAuth.instance.currentUser!.email)
+        .collection("notifications")
         .doc(id)
+        .update({"status": 1});
+
+    DocumentReference userRef = notificationSnapshot.value?.get("user_ref");
+
+    await userRef
         .collection("notifications")
         .doc(FirebaseAuth.instance.currentUser!.email)
         .update({"status": 1});
 
-    DocumentReference userRef = notificationsSnapshot.get("user_ref");
+    fetchRequest(id: id);
 
-    await userRef.collection("notifications").doc(id).update({"status": 1});
+    goToRoutePage();
+  }
 
-    Get.to(() => Route());
+  Future<void> declineRequest({required String id}) async {
+    await FirebaseFirestore.instance
+        .collection("mechanics")
+        .doc(FirebaseAuth.instance.currentUser!.email)
+        .collection("notifications")
+        .doc(id)
+        .update({"status": 0});
+
+    DocumentReference userRef = notificationSnapshot.value?.get("user_ref");
+
+    await userRef
+        .collection("notifications")
+        .doc(FirebaseAuth.instance.currentUser!.email)
+        .update({"status": 0});
+
+    await fetchRequest(id: id);
+
+    Get.showSnackbar(
+      const GetSnackBar(
+        message: 'Request Declined.',
+        duration: Duration(seconds: 2),
+      ),
+    );
+  }
+
+  void goToRoutePage() {
+    Get.to(() => Route(), arguments: {
+      "userLocation": notificationSnapshot.value?.get("location")
+    });
   }
 }

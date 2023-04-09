@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
@@ -24,7 +22,6 @@ class NotificationsController extends GetxController {
       List<Map> notificationsArray = [];
       for (DocumentSnapshot doc in notificationsSnapshot.docs) {
         DocumentReference mechanicRef = doc.get("mechanic_ref");
-        log(mechanicRef.toString());
         DocumentSnapshot mechanic = await mechanicRef.get();
 
         notificationsArray.add(
