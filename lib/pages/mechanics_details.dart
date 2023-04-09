@@ -32,7 +32,6 @@ class MechanicsDetails extends StatefulWidget {
 }
 
 class _MechanicsDetailsState extends State<MechanicsDetails> {
-
   Future<void> _makePhoneCall(String phoneNumber) async {
     final Uri launchUri = Uri(
       scheme: 'tel',
@@ -43,6 +42,8 @@ class _MechanicsDetailsState extends State<MechanicsDetails> {
 
   @override
   Widget build(BuildContext context) {
+    widget.controller.fetchFeedbacks(email: widget.email);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -121,19 +122,18 @@ class _MechanicsDetailsState extends State<MechanicsDetails> {
                             height: 12,
                           ),
                           TextButton(
-                            onPressed: (){
-                              showDialog(
-                                context: context,
-                                builder: (context) {
-                                  return Dialog(
-                                    elevation: 16,
-                                    backgroundColor: Colors.grey[900],
-                                    child: Container(
-                                      child: ListView(
-                                        shrinkWrap: true,
-                                        children: <Widget>[
+                              onPressed: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return Obx(() {
+                                      return Dialog(
+                                        elevation: 16,
+                                        backgroundColor: Colors.grey[900],
+                                        child: Column(children: [
                                           SizedBox(height: 20),
-                                          Center(child: Text(
+                                          Center(
+                                              child: Text(
                                             "Feedbacks",
                                             style: TextStyle(
                                               fontSize: 16,
@@ -141,17 +141,39 @@ class _MechanicsDetailsState extends State<MechanicsDetails> {
                                             ),
                                           )),
                                           SizedBox(height: 20),
-                                          FeedbackCard(),
-                                          FeedbackCard(),
-                                        ],
-                                      ),
-                                    ),
-                                  );
-                                },
-                              );
-                            },
-                            child: Text("Feedbacks")
-                          ),
+                                          Expanded(
+                                            child: ListView.builder(
+                                                itemCount: widget
+                                                        .controller
+                                                        .feedbacksSnapshot
+                                                        .value
+                                                        ?.docs
+                                                        .length ??
+                                                    0,
+                                                itemBuilder: (context, index) {
+                                                  return FeedbackCard(
+                                                    mechanicMail: widget
+                                                        .controller
+                                                        .feedbacksSnapshot
+                                                        .value!
+                                                        .docs[index]
+                                                        .id,
+                                                    feedback: widget
+                                                        .controller
+                                                        .feedbacksSnapshot
+                                                        .value!
+                                                        .docs[index]
+                                                        .get("feedback"),
+                                                  );
+                                                }),
+                                          ),
+                                        ]),
+                                      );
+                                    });
+                                  },
+                                );
+                              },
+                              child: Text("Feedbacks")),
                         ],
                       ),
                     ),
@@ -191,25 +213,24 @@ class _MechanicsDetailsState extends State<MechanicsDetails> {
                     width: double.infinity,
                     height: 50,
                     child: ElevatedButton(
-                      onPressed: () {
-                        setState(() {
-                          _makePhoneCall(widget.phoneNumber);
-                        });
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          Icon(Icons.call),
-                          Text(
-                            "Call",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18,
-                                fontFamily: "Poppins"),
-                          ),
-                        ],
-                      )
-                    ),
+                        onPressed: () {
+                          setState(() {
+                            _makePhoneCall(widget.phoneNumber);
+                          });
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const [
+                            Icon(Icons.call),
+                            Text(
+                              "Call",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                  fontFamily: "Poppins"),
+                            ),
+                          ],
+                        )),
                   ),
                   const SizedBox(
                     height: 12,

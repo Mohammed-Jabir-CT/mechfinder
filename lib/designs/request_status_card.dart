@@ -1,20 +1,20 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:va/pages/user_feedback.dart';
 
-class RequestStatusCard extends StatefulWidget {
+class RequestStatusCard extends StatelessWidget {
   const RequestStatusCard(
-      {Key? key, required this.status, required this.mechanicName})
+      {Key? key,
+      required this.status,
+      required this.mechanicName,
+      required this.mechanicRef})
       : super(key: key);
 
   final dynamic status;
   final String mechanicName;
+  final DocumentReference mechanicRef;
 
-  @override
-  State<RequestStatusCard> createState() => _RequestStatusCardState();
-}
-
-class _RequestStatusCardState extends State<RequestStatusCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -59,7 +59,7 @@ class _RequestStatusCardState extends State<RequestStatusCard> {
                     ),
                   ),
                   Text(
-                    widget.mechanicName,
+                    mechanicName,
                     style: TextStyle(fontSize: 16, color: Colors.amberAccent),
                   ),
                 ],
@@ -76,9 +76,9 @@ class _RequestStatusCardState extends State<RequestStatusCard> {
                     ),
                   ),
                   Text(
-                    widget.status == 0
+                    status == 0
                         ? "Declined"
-                        : widget.status == 1
+                        : status == 1
                             ? "Accepted"
                             : "Waiting",
                     style: TextStyle(fontSize: 16, color: Colors.amberAccent),
@@ -92,8 +92,9 @@ class _RequestStatusCardState extends State<RequestStatusCard> {
             color: Colors.amberAccent,
           ),
           TextButton(
-            onPressed: (){
-              Get.to(()=>UserFeedback());
+            onPressed: () {
+              Get.to(() => UserFeedback(),
+                  arguments: {"mechanicRef": mechanicRef});
             },
             child: Text("Give Feedback"),
           ),

@@ -6,6 +6,8 @@ import 'package:get/get.dart';
 import 'package:va/controllers/home_controller.dart';
 
 class MechanicsDetailsController extends GetxController {
+  final feedbacksSnapshot = Rxn<QuerySnapshot>();
+
   final homeController = Get.find<HomeController>();
 
   Future<void> sendLocation({required String email}) async {
@@ -24,7 +26,7 @@ class MechanicsDetailsController extends GetxController {
       Map<String, dynamic> userPayload = {
         "location": GeoPoint(userLocation.latitude, userLocation.longitude),
         "mechanic_ref":
-            FirebaseFirestore.instance.collection("mechanics").doc(email),
+        FirebaseFirestore.instance.collection("mechanics").doc(email),
         "status": null
       };
 
@@ -58,5 +60,13 @@ class MechanicsDetailsController extends GetxController {
         backgroundColor: Colors.red,
       ));
     }
+  }
+
+  Future<void> fetchFeedbacks({required String email}) async {
+    feedbacksSnapshot.value = await FirebaseFirestore.instance
+        .collection("mechanics")
+        .doc(email)
+        .collection("feedbacks")
+        .get();
   }
 }

@@ -1,33 +1,35 @@
 import 'package:flutter/material.dart';
 
-class FeedbackCard extends StatefulWidget {
-  const FeedbackCard({Key? key}) : super(key: key);
+class FeedbackCard extends StatelessWidget {
+  const FeedbackCard(
+      {Key? key, required this.mechanicMail, required this.feedback})
+      : super(key: key);
 
-  @override
-  State<FeedbackCard> createState() => _FeedbackCardState();
-}
+  final String mechanicMail;
+  final String feedback;
 
-class _FeedbackCardState extends State<FeedbackCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Column(
         children: [
-          Divider(color: Colors.white,),
-          Text(
-            "aaa@gmail.com",
-            style: TextStyle(
-              color: Colors.grey
-            ),
+          Divider(
+            color: Colors.white,
           ),
           Text(
-            "good work, nice punctuality",
+            mechanicMail,
+            style: TextStyle(color: Colors.grey),
+          ),
+          Text(
+            feedback,
             style: TextStyle(
               letterSpacing: 1,
               fontSize: 16,
             ),
           ),
-          Divider(color: Colors.white,),
+          Divider(
+            color: Colors.white,
+          ),
         ],
       ),
     );

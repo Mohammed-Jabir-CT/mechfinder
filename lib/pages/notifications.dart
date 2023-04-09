@@ -32,10 +32,11 @@ class Notifications extends StatelessWidget {
                   child: ListView.builder(
                       itemCount: controller.notifications.length,
                       itemBuilder: (context, index) {
-                        print(controller.notifications);
                         return RequestStatusCard(
                           mechanicName: controller.notifications[index]["name"],
                           status: controller.notifications[index]["status"],
+                          mechanicRef: controller.notifications[index]
+                              ["mechanicRef"],
                         );
                       }),
                 );

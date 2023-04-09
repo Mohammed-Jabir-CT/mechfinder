@@ -24,8 +24,11 @@ class NotificationsController extends GetxController {
         DocumentReference mechanicRef = doc.get("mechanic_ref");
         DocumentSnapshot mechanic = await mechanicRef.get();
 
-        notificationsArray.add(
-            {"name": mechanic.get("fullName"), "status": doc.get("status")});
+        notificationsArray.add({
+          "name": mechanic.get("fullName"),
+          "status": doc.get("status"),
+          "mechanicRef": mechanicRef
+        });
       }
 
       notifications.value = notificationsArray;
