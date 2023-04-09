@@ -70,6 +70,6 @@ class _NewMechanicsCardState extends State<NewMechanicsCard> {
           ],
         ),
       ),
-    );;
+    );
   }
 }

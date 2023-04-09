@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:va/designs/vehicle_button.dart';
+import 'package:va/pages/admin_user_reports.dart';
+import 'package:va/pages/admin_user_requests.dart';
 
 class AdminUsers extends StatefulWidget {
   const AdminUsers({Key? key}) : super(key: key);
@@ -49,13 +52,14 @@ class _AdminUsersState extends State<AdminUsers> {
                       vehicleName: "User Reports",
                       vehicleIcon: Icons.car_repair,
                       onClick: () {
-                        // Get.to(()=> AdminMechanic());
+                        Get.to(()=> AdminUserReports());
                       },
                     ),
                     VehicleButton(
                       vehicleName: "User Requests",
                       vehicleIcon: Icons.person,
                       onClick: () {
+                        Get.to(()=> AdminUserRequests());
                       },
                     ),
                   ],

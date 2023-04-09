@@ -1,20 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:va/pages/user_feedback.dart';
 
-class RequestStatusCard extends StatefulWidget {
-  const RequestStatusCard(
-      {Key? key, required this.status, required this.mechanicName})
-      : super(key: key);
-
-  final dynamic status;
-  final String mechanicName;
+class AdminUserRequestsCard extends StatefulWidget {
+  const AdminUserRequestsCard({Key? key}) : super(key: key);
 
   @override
-  State<RequestStatusCard> createState() => _RequestStatusCardState();
+  State<AdminUserRequestsCard> createState() => _AdminUserRequestsCardState();
 }
 
-class _RequestStatusCardState extends State<RequestStatusCard> {
+class _AdminUserRequestsCardState extends State<AdminUserRequestsCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -42,7 +35,7 @@ class _RequestStatusCardState extends State<RequestStatusCard> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Request Status",
+                "Request",
                 style: TextStyle(
                     color: Colors.grey.shade500,
                     fontSize: 18,
@@ -53,13 +46,13 @@ class _RequestStatusCardState extends State<RequestStatusCard> {
               Row(
                 children: [
                   Text(
-                    "Mechanic: ",
+                    "From: ",
                     style: TextStyle(
                       fontSize: 16,
                     ),
                   ),
                   Text(
-                    widget.mechanicName,
+                    "User email",
                     style: TextStyle(fontSize: 16, color: Colors.amberAccent),
                   ),
                 ],
@@ -70,35 +63,23 @@ class _RequestStatusCardState extends State<RequestStatusCard> {
               Row(
                 children: [
                   Text(
-                    "Status: ",
+                    "To: ",
                     style: TextStyle(
                       fontSize: 16,
                     ),
                   ),
                   Text(
-                    widget.status == 0
-                        ? "Declined"
-                        : widget.status == 1
-                            ? "Accepted"
-                            : "Waiting",
+                    "Mech Name",
                     style: TextStyle(fontSize: 16, color: Colors.amberAccent),
                   ),
                 ],
               ),
             ],
           ),
-          Icon(
-            Icons.done,
-            color: Colors.amberAccent,
-          ),
-          TextButton(
-            onPressed: (){
-              Get.to(()=>UserFeedback());
-            },
-            child: Text("Give Feedback"),
+          Text(
+              "TIme"
           ),
         ],
       ),
-    );
-  }
+    );;  }
 }
