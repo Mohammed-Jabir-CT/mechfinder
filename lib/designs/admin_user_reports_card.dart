@@ -2,19 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:va/pages/user_report_details.dart';
 
-class AdminUserReportsCard extends StatefulWidget {
-  const AdminUserReportsCard({Key? key}) : super(key: key);
+class AdminUserReportsCard extends StatelessWidget {
+  const AdminUserReportsCard({Key? key, required this.report})
+      : super(key: key);
 
-  @override
-  State<AdminUserReportsCard> createState() => _AdminUserReportsCardState();
-}
+  final Map report;
 
-class _AdminUserReportsCardState extends State<AdminUserReportsCard> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
-        Get.to(()=>UserReportDetails());
+      onTap: () {
+        Get.to(() => UserReportDetails(), arguments: {"report": report});
       },
       child: Container(
         decoration: BoxDecoration(
@@ -58,7 +56,7 @@ class _AdminUserReportsCardState extends State<AdminUserReportsCard> {
                       ),
                     ),
                     Text(
-                      "User email",
+                      report["userEmail"],
                       style: TextStyle(fontSize: 16, color: Colors.amberAccent),
                     ),
                   ],
@@ -75,7 +73,7 @@ class _AdminUserReportsCardState extends State<AdminUserReportsCard> {
                       ),
                     ),
                     Text(
-                      "Mech Name",
+                      report["fullName"],
                       style: TextStyle(fontSize: 16, color: Colors.amberAccent),
                     ),
                   ],

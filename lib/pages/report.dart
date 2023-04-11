@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class Report extends StatefulWidget {
-  const Report({Key? key}) : super(key: key);
+import '../controllers/report_controller.dart';
 
-  @override
-  State<Report> createState() => _ReportState();
-}
+class Report extends StatelessWidget {
+  Report({Key? key}) : super(key: key);
 
-class _ReportState extends State<Report> {
+  final ReportController controller = Get.put(ReportController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,18 +39,23 @@ class _ReportState extends State<Report> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     TextFormField(
+                      controller: controller.reportController,
                       decoration: const InputDecoration(
                         hintText: "Explain your complaint..",
                       ),
                       keyboardType: TextInputType.multiline,
                       maxLines: 10,
                     ),
-                    const SizedBox(height: 14,),
+                    const SizedBox(
+                      height: 14,
+                    ),
                     SizedBox(
                       width: double.infinity,
                       height: 50,
                       child: ElevatedButton.icon(
-                        onPressed: (){},
+                        onPressed: () {
+                          controller.sendReport();
+                        },
                         icon: const Icon(Icons.report),
                         label: const Text(
                           "Report",

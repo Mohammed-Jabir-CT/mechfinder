@@ -68,8 +68,10 @@ class UserFeedback extends StatelessWidget {
                 children: [
                   Text("or"),
                   TextButton.icon(
-                    onPressed: (){
-                      Get.to(()=> Report());
+                    onPressed: () {
+                      Get.to(() => Report(), arguments: {
+                        "mechanicRef": controller.arguments["mechanicRef"]
+                      });
                     },
                     icon: Icon(Icons.report, color: Colors.amberAccent,),
                     label: Text("Report"),

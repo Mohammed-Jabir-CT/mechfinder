@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:va/designs/admin_user_reports_card.dart';
 
-class AdminUserReports extends StatefulWidget {
-  const AdminUserReports({Key? key}) : super(key: key);
+import '../controllers/admin_user_reports_controller.dart';
 
-  @override
-  State<AdminUserReports> createState() => _AdminUserReportsState();
-}
+class AdminUserReports extends StatelessWidget {
+  AdminUserReports({Key? key}) : super(key: key);
 
-class _AdminUserReportsState extends State<AdminUserReports> {
+  final AdminUserReportsController controller =
+      Get.put(AdminUserReportsController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,8 +40,16 @@ class _AdminUserReportsState extends State<AdminUserReports> {
               ],
             ),
           ),
-          AdminUserReportsCard(),
-          AdminUserReportsCard(),
+          Obx(() {
+            return Expanded(
+              child: ListView.builder(
+                  itemCount: controller.reports.length ?? 0,
+                  itemBuilder: (context, index) {
+                    return AdminUserReportsCard(
+                        report: controller.reports[index]);
+                  }),
+            );
+          })
         ],
       ),
     );

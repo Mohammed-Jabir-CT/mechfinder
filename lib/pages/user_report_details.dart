@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class UserReportDetails extends StatefulWidget {
-  const UserReportDetails({Key? key}) : super(key: key);
+import '../controllers/user_report_details_controller.dart';
 
-  @override
-  State<UserReportDetails> createState() => _UserReportDetailsState();
-}
+class UserReportDetails extends StatelessWidget {
+  UserReportDetails({Key? key}) : super(key: key);
 
-class _UserReportDetailsState extends State<UserReportDetails> {
+  final UserReportDetailsController controller =
+      Get.put(UserReportDetailsController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,8 +48,9 @@ class _UserReportDetailsState extends State<UserReportDetails> {
                           ),
                         ),
                         Text(
-                          "User email",
-                          style: TextStyle(fontSize: 16, color: Colors.amberAccent),
+                          controller.report["userEmail"],
+                          style: TextStyle(
+                              fontSize: 16, color: Colors.amberAccent),
                         ),
                       ],
                     ),
@@ -64,8 +66,9 @@ class _UserReportDetailsState extends State<UserReportDetails> {
                           ),
                         ),
                         Text(
-                          "Mech Name",
-                          style: TextStyle(fontSize: 16, color: Colors.amberAccent),
+                          controller.report["fullName"],
+                          style: TextStyle(
+                              fontSize: 16, color: Colors.amberAccent),
                         ),
                       ],
                     ),
@@ -82,18 +85,23 @@ class _UserReportDetailsState extends State<UserReportDetails> {
                         border: OutlineInputBorder(),
                       ),
                       child: Text(
-                        "report words from user",
+                        controller.report["report"],
                         style: TextStyle(
                           fontSize: 17,
                         ),
                       ),
                     ),
-                    const SizedBox(height: 14,),
+                    const SizedBox(
+                      height: 14,
+                    ),
                     SizedBox(
                       width: double.infinity,
                       height: 50,
                       child: ElevatedButton.icon(
-                        onPressed: (){},
+                        onPressed: () {
+                          controller
+                              .makePhoneCall(controller.report["phoneNumber"]);
+                        },
                         icon: const Icon(Icons.call),
                         label: const Text(
                           "Call Mechanic",
