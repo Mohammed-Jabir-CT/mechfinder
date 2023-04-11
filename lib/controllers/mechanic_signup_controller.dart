@@ -24,7 +24,6 @@ class MechanicSignupController extends GetxController {
   TextEditingController cityController = TextEditingController();
   TextEditingController bioController = TextEditingController();
 
-
   @override
   void onInit() {
     super.onInit();
@@ -34,7 +33,7 @@ class MechanicSignupController extends GetxController {
         east: 10.4922941,
         north: 47.8084648,
         south: 45.817995,
-        west:  5.9559113,
+        west: 5.9559113,
       ),
     );
   }
@@ -51,7 +50,7 @@ class MechanicSignupController extends GetxController {
 
       profilePhotoFile.value = File(image.path);
       profilePhotoName.value = image.name;
-    } catch(e) {
+    } catch (e) {
       print(e);
       return;
     }
@@ -71,10 +70,8 @@ class MechanicSignupController extends GetxController {
         textConfirmPicker: "Select",
         initCurrentUserPosition: true,
         initZoom: 14,
-        titleStyle: TextStyle(
-          fontFamily: "Poppins",
-          fontWeight: FontWeight.bold
-        ),
+        titleStyle:
+            TextStyle(fontFamily: "Poppins", fontWeight: FontWeight.bold),
       );
 
       if (geoPoint == null) {
@@ -89,11 +86,13 @@ class MechanicSignupController extends GetxController {
 
   Future<void> signup() async {
     try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(email: emailController.text, password: passwordController.text);
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: emailController.text, password: passwordController.text);
 
       final storageRef = FirebaseStorage.instance.ref();
 
-      final imageRef = storageRef.child("mechanics/profile_images/${profilePhotoName.value}");
+      final imageRef = storageRef
+          .child("mechanics/profile_images/${profilePhotoName.value}");
 
       await imageRef.putFile(profilePhotoFile.value);
 
@@ -110,6 +109,7 @@ class MechanicSignupController extends GetxController {
         "city": cityController.text,
         "bio": bioController.text,
         "location": GeoPoint(location.value.latitude, location.value.longitude),
+        "verified": false
       };
 
       await FirebaseFirestore.instance

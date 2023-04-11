@@ -1,13 +1,17 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class NewMechanicsDetails extends StatefulWidget {
-  const NewMechanicsDetails({Key? key}) : super(key: key);
+import '../controllers/new_mechanics_details_controller.dart';
 
-  @override
-  State<NewMechanicsDetails> createState() => _NewMechanicsDetailsState();
-}
+class NewMechanicsDetails extends StatelessWidget {
+  NewMechanicsDetails({Key? key, required this.mechanic}) : super(key: key);
 
-class _NewMechanicsDetailsState extends State<NewMechanicsDetails> {
+  final DocumentSnapshot mechanic;
+
+  final NewMechanicsDetailsController controller =
+      Get.put(NewMechanicsDetailsController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,14 +56,15 @@ class _NewMechanicsDetailsState extends State<NewMechanicsDetails> {
                         children: [
                           CircleAvatar(
                             radius: 50,
-                            // backgroundImage: NetworkImage(widget.photo),
+                            backgroundImage:
+                                NetworkImage(mechanic.get("profilePhoto")),
                             backgroundColor: Colors.grey,
                           ),
                           const SizedBox(
                             height: 12,
                           ),
                           Text(
-                            "widget.name",
+                            mechanic.get("fullName"),
                             style: TextStyle(
                               fontSize: 22,
                               fontWeight: FontWeight.bold,
@@ -70,7 +75,7 @@ class _NewMechanicsDetailsState extends State<NewMechanicsDetails> {
                             height: 12,
                           ),
                           Text(
-                            "widget.phoneNumber",
+                            mechanic.get("phoneNumber"),
                             style: TextStyle(
                               fontSize: 17,
                             ),
@@ -103,12 +108,12 @@ class _NewMechanicsDetailsState extends State<NewMechanicsDetails> {
                             ),
                             border: OutlineInputBorder(),
                           ),
-                          // child: Text(
-                          //   widget.bio,
-                          //   style: TextStyle(
-                          //     fontSize: 17,
-                          //   ),
-                          // ),
+                          child: Text(
+                            mechanic.get("bio"),
+                            style: TextStyle(
+                              fontSize: 17,
+                            ),
+                          ),
                         ),
                       ],
                     ),
@@ -156,7 +161,9 @@ class _NewMechanicsDetailsState extends State<NewMechanicsDetails> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             TextButton.icon(
-                              onPressed: () {},
+                              onPressed: () {
+                                controller.verifyMechanic(id: mechanic.id);
+                              },
                               icon: Icon(Icons.done),
                               label: Text("Accept"),
                             ),

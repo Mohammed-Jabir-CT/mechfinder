@@ -1,20 +1,18 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:va/pages/new_mechanics_details.dart';
 
-class NewMechanicsCard extends StatefulWidget {
-  const NewMechanicsCard({Key? key}) : super(key: key);
+class NewMechanicsCard extends StatelessWidget {
+  const NewMechanicsCard({Key? key, required this.mechanic}) : super(key: key);
 
-  @override
-  State<NewMechanicsCard> createState() => _NewMechanicsCardState();
-}
+  final DocumentSnapshot mechanic;
 
-class _NewMechanicsCardState extends State<NewMechanicsCard> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
-        Get.to(()=>NewMechanicsDetails());
+      onTap: () {
+        Get.to(() => NewMechanicsDetails(mechanic: mechanic));
       },
       child: Container(
         decoration: BoxDecoration(
@@ -43,7 +41,7 @@ class _NewMechanicsCardState extends State<NewMechanicsCard> {
               child: CircleAvatar(
                 backgroundColor: Colors.grey,
                 radius: 25,
-                // backgroundImage: NetworkImage(widget.photo),
+                backgroundImage: NetworkImage(mechanic.get("profilePhoto")),
               ),
             ),
             Expanded(
@@ -54,7 +52,7 @@ class _NewMechanicsCardState extends State<NewMechanicsCard> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Text(
-                        "widget.name",
+                        mechanic.get("fullName"),
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1,

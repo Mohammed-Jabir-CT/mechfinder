@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:va/controllers/new_mechanics_controller.dart';
 import 'package:va/designs/new_mechanics_card.dart';
 
-class NewMechanics extends StatefulWidget {
-  const NewMechanics({Key? key}) : super(key: key);
+class NewMechanics extends StatelessWidget {
+  NewMechanics({Key? key}) : super(key: key);
 
-  @override
-  State<NewMechanics> createState() => _NewMechanicsState();
-}
+  final NewMechanicsController controller = Get.put(NewMechanicsController());
 
-class _NewMechanicsState extends State<NewMechanics> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,8 +38,18 @@ class _NewMechanicsState extends State<NewMechanics> {
               ],
             ),
           ),
-          NewMechanicsCard(),
-          NewMechanicsCard(),
+          Obx(() {
+            return Expanded(
+              child: ListView.builder(
+                  itemCount:
+                      controller.mechanicsSnapshot.value?.docs.length ?? 0,
+                  itemBuilder: (context, index) {
+                    return NewMechanicsCard(
+                        mechanic:
+                            controller.mechanicsSnapshot.value!.docs[index]);
+                  }),
+            );
+          })
         ],
       ),
     );
