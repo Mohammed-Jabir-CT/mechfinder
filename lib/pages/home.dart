@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:va/controllers/home_controller.dart';
-import 'package:va/pages/admin_login.dart';
-import 'package:va/pages/mechanics_home.dart';
 import 'package:va/pages/notifications.dart';
-import 'package:va/pages/register.dart';
 import 'package:va/pages/user_feedback.dart';
 import 'package:va/pages/vehicle_select.dart';
 import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
@@ -31,17 +28,6 @@ class _HomeState extends State<Home> {
         ),
         backgroundColor: Colors.grey[900],
         actions: [
-          TextButton(
-            onPressed: () {
-              Get.to(() => const Register());
-            },
-            child: const Text(
-              "JOIN",
-              style: TextStyle(
-                color: Colors.white,
-              ),
-            ),
-          ),
           IconButton(
             onPressed: () {
               Get.to(() => Notifications());
@@ -56,9 +42,9 @@ class _HomeState extends State<Home> {
                   PopupMenuItem<int>(
                     onTap: controller.logout,
                 value: 2,
-                child: Text("Logout"),
+                child: const Text("Logout"),
               ),
-                  PopupMenuItem<int>(
+                  const PopupMenuItem<int>(
                     value: 3,
                     child: Text("To Add"),
                   ),
@@ -66,7 +52,7 @@ class _HomeState extends State<Home> {
               },
               onSelected:(value){
                 if(value == 2){
-                  final snackBar= SnackBar(
+                  const snackBar= SnackBar(
                       content: Text("logged out"),
                   );
                   ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -107,25 +93,25 @@ class _HomeState extends State<Home> {
                   maxZoomLevel: 14,
                   stepZoom: 1.0,
                   userLocationMarker: UserLocationMaker(
-                    personMarker: MarkerIcon(
+                    personMarker: const MarkerIcon(
                       icon: Icon(
                         Icons.location_history_rounded,
                         color: Colors.red,
                         size: 48,
                       ),
                     ),
-                    directionArrowMarker: MarkerIcon(
+                    directionArrowMarker: const MarkerIcon(
                       icon: Icon(
                         Icons.double_arrow,
                         size: 48,
                       ),
                     ),
                   ),
-                  roadConfiguration: RoadOption(
+                  roadConfiguration: const RoadOption(
                     roadColor: Colors.yellowAccent,
                   ),
                   markerOption: MarkerOption(
-                      defaultMarker: MarkerIcon(
+                      defaultMarker: const MarkerIcon(
                         icon: Icon(
                           Icons.location_on_rounded,
                           color: Colors.blue,

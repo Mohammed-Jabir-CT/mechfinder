@@ -29,9 +29,9 @@ class _MechanicsHomeState extends State<MechanicsHome> {
         backgroundColor: Colors.grey[900],
         actions: [
           IconButton(
-            onPressed: () {
-              Get.to(() => EditProfile());
-            },
+            onPressed: (){
+              Get.to(()=> EditProfile());
+              },
             icon: Icon(Icons.edit),
           ),
           PopupMenuButton(
@@ -200,15 +200,12 @@ class _MechanicsHomeState extends State<MechanicsHome> {
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    height: 12,
-                  ),
                   SizedBox(
                     width: double.infinity,
                     height: 50,
                     child: ElevatedButton(
                       onPressed: () {
-                        Get.to(() => WorkHistory());
+                        Get.to(() => Requests());
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
