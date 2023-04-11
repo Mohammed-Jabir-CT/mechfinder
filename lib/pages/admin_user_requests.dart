@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:va/designs/admin_user_requests_card.dart';
 
-class AdminUserRequests extends StatefulWidget {
-  const AdminUserRequests({Key? key}) : super(key: key);
+import '../controllers/admin_user_requests_controller.dart';
 
-  @override
-  State<AdminUserRequests> createState() => _AdminUserRequestsState();
-}
+class AdminUserRequests extends StatelessWidget {
+  AdminUserRequests({Key? key}) : super(key: key);
 
-class _AdminUserRequestsState extends State<AdminUserRequests> {
+  final AdminUserRequestsController controller =
+      Get.put(AdminUserRequestsController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,9 +40,16 @@ class _AdminUserRequestsState extends State<AdminUserRequests> {
               ],
             ),
           ),
-          AdminUserRequestsCard(),
-          AdminUserRequestsCard(),
-          AdminUserRequestsCard(),
+          Obx(() {
+            return Expanded(
+              child: ListView.builder(
+                  itemCount: controller.requests.length ?? 0,
+                  itemBuilder: (context, index) {
+                    return AdminUserRequestsCard(
+                        request: controller.requests[index]);
+                  }),
+            );
+          })
         ],
       ),
     );

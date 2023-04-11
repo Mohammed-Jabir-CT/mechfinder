@@ -26,8 +26,18 @@ class MechanicsDetailsController extends GetxController {
       Map<String, dynamic> userPayload = {
         "location": GeoPoint(userLocation.latitude, userLocation.longitude),
         "mechanic_ref":
-        FirebaseFirestore.instance.collection("mechanics").doc(email),
+            FirebaseFirestore.instance.collection("mechanics").doc(email),
         "status": null
+      };
+
+      Map<String, dynamic> requestPayload = {
+        "location": GeoPoint(userLocation.latitude, userLocation.longitude),
+        "mechanic_ref":
+            FirebaseFirestore.instance.collection("mechanics").doc(email),
+        "status": null,
+        "user_ref": FirebaseFirestore.instance
+            .collection("user")
+            .doc(FirebaseAuth.instance.currentUser!.email),
       };
 
       await FirebaseFirestore.instance
@@ -43,6 +53,10 @@ class MechanicsDetailsController extends GetxController {
           .collection("notifications")
           .doc(email)
           .set(userPayload);
+
+      await FirebaseFirestore.instance
+          .collection("requests")
+          .add(requestPayload);
 
       Get.showSnackbar(
         const GetSnackBar(

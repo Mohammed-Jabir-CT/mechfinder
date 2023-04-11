@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 
-class AdminUserRequestsCard extends StatefulWidget {
-  const AdminUserRequestsCard({Key? key}) : super(key: key);
+class AdminUserRequestsCard extends StatelessWidget {
+  const AdminUserRequestsCard({Key? key, required this.request})
+      : super(key: key);
 
-  @override
-  State<AdminUserRequestsCard> createState() => _AdminUserRequestsCardState();
-}
+  final Map request;
 
-class _AdminUserRequestsCardState extends State<AdminUserRequestsCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -52,7 +50,7 @@ class _AdminUserRequestsCardState extends State<AdminUserRequestsCard> {
                     ),
                   ),
                   Text(
-                    "User email",
+                    request["userEmail"],
                     style: TextStyle(fontSize: 16, color: Colors.amberAccent),
                   ),
                 ],
@@ -69,17 +67,16 @@ class _AdminUserRequestsCardState extends State<AdminUserRequestsCard> {
                     ),
                   ),
                   Text(
-                    "Mech Name",
+                    request["fullName"],
                     style: TextStyle(fontSize: 16, color: Colors.amberAccent),
                   ),
                 ],
               ),
             ],
           ),
-          Text(
-              "TIme"
-          ),
         ],
       ),
-    );;  }
+    );
+    ;
+  }
 }

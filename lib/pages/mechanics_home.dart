@@ -205,7 +205,7 @@ class _MechanicsHomeState extends State<MechanicsHome> {
                     height: 50,
                     child: ElevatedButton(
                       onPressed: () {
-                        Get.to(() => Requests());
+                        Get.to(() => WorkHistory());
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
